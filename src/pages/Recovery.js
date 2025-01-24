@@ -9,7 +9,7 @@ const Recovery = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Simulate validation
+        // Validate email and simulate sending recovery email
         if (!email) {
             setError("Email is required");
             return;
@@ -21,8 +21,7 @@ const Recovery = () => {
         }
 
         setError("");
-        alert("Recovery link sent to your email!");
-        navigate("/"); // Redirect to the login page after submission
+        navigate("/verify-code", { state: { email } }); // Pass email to VerifyCode page
     };
 
     return (
