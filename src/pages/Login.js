@@ -32,10 +32,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="h-screen grid md:grid-cols-2 grid-cols-1">
       {/* Left Section */}
       <div
-        className="w-1/2 flex justify-center bg-cover bg-center"
+        className="w-full flex justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${mainBg})` }}
       >
         <div className="grid content-between p-6">
@@ -53,7 +53,7 @@ const Login = () => {
       </div>
 
       {/* Right Section */}
-      <div className="w-1/2 bg-white flex items-center justify-center">
+      <div className="w-full  bg-white flex items-center justify-center">
         <div className="w-3/5 grid text-center">
           <h2 className="text-3xl font-bold text-center text-darkblue mb-6">LOGIN</h2>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
