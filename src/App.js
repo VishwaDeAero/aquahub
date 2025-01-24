@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <div className="text-blue-500">Tailwind CSS is working!</div>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
