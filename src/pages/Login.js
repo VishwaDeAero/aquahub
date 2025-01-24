@@ -75,7 +75,7 @@ const Login = () => {
               icon="fa-lock"
             />
             <div className="text-gray-500">
-              Forgot your password? <a href="#" className="text-sm text-blue-500">Recover</a>
+              Forgot your password? <a onClick={() => navigate("/recovery")} className="text-sm text-blue-500">Recover</a>
             </div>
             <button
               type="submit"
