@@ -32,8 +32,8 @@ const VerifyCode = () => {
 
         if (fullCode.length === 5) {
             // Simulate verification
-            alert(`Code Verified: ${fullCode}`);
-            navigate("/reset-password"); // Redirect to password reset page
+            
+            navigate("/password-reset-confirm"); // Redirect to password reset confirmation page
         } else {
             alert("Please enter a complete 5-digit code.");
         }
@@ -78,7 +78,7 @@ const VerifyCode = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-darkblue text-white py-3 rounded-lg hover:bg-blue-900"
+                        className="w-full bg-darkblue text-white font-semibold py-3 rounded-lg hover:bg-blue-900"
                     >
                         Verify code
                     </button>
