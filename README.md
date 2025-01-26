@@ -1,6 +1,6 @@
 ## UI Design
 
-[https://www.figma.com/design/5VRpFuU9142JqqX36M69K7/Login-page-(Community)?node-id=0-1&p=f&t=90hrNvgxKqH7s84U-0] (Aquahub Figma UI Design)
+[Aquahub Figma UI Design](https://www.figma.com/design/5VRpFuU9142JqqX36M69K7/Login-page-(Community)?node-id=0-1&p=f&t=90hrNvgxKqH7s84U-0)
 
 # Getting Started with Create React App
 
