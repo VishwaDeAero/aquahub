@@ -7,12 +7,14 @@ import PasswordResetConfirm from './pages/PasswordResetConfirm';
 import ResetPassword from './pages/ResetPassword';
 import Success from './pages/Success';
 import Dashboard from './pages/Dashboard';
+import HatcheryManagement from './pages/HatcheryManagement';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/hatchery-management" element={<HatcheryManagement />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recovery" element={<Recovery />} />
         <Route path="/verify-code" element={<VerifyCode />} />

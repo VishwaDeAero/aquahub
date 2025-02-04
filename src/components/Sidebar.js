@@ -2,6 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+    // Menu items array
+    const menuItems = [
+        { title: "Dashboard", path: "/", icon: "fas fa-home" },
+        { title: "Hatchery Management", path: "/hatchery-management", icon: "fas fa-fish" },
+        { title: "Inventory Management", path: "/inventory-management", icon: "fas fa-boxes" },
+        { title: "User Management", path: "/user-management", icon: "fas fa-users" },
+    ];
+
     return (
         <div className="w-64 bg-gradient-to-b from-blue-600 to-blue-700 h-screen text-white flex flex-col justify-between">
             <div>
@@ -10,50 +18,19 @@ const Sidebar = () => {
                 </div>
                 <nav className="mt-6">
                     <ul>
-                        <li className="">
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) =>
-                                    `w-full block px-6 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-blue-500 font-bold" : ""
-                                    }`
-                                }
-                            >
-                                <i className="fas fa-home mr-4"></i> Dashboard
-                            </NavLink>
-                        </li>
-                        <li className="">
-                            <NavLink
-                                to="/hatchery-management"
-                                className={({ isActive }) =>
-                                    `w-full block px-6 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-blue-500 font-bold" : ""
-                                    }`
-                                }
-                            >
-                                <i className="fas fa-fish mr-4"></i> Hatchery Management
-                            </NavLink>
-                        </li>
-                        <li className="">
-                            <NavLink
-                                to="/inventory-management"
-                                className={({ isActive }) =>
-                                    `w-full block px-6 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-blue-500 font-bold" : ""
-                                    }`
-                                }
-                            >
-                                <i className="fas fa-boxes mr-4"></i> Inventory Management
-                            </NavLink>
-                        </li>
-                        <li className="">
-                            <NavLink
-                                to="/user-management"
-                                className={({ isActive }) =>
-                                    `w-full block px-6 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-blue-500 font-bold" : ""
-                                    }`
-                                }
-                            >
-                                <i className="fas fa-users mr-4"></i> User Management
-                            </NavLink>
-                        </li>
+                        {menuItems.map((item, index) => (
+                            <li key={index}>
+                                <NavLink
+                                    to={item.path}
+                                    className={({ isActive }) =>
+                                        `w-full block px-5 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-blue-500 font-bold" : ""
+                                        }`
+                                    }
+                                >
+                                    <i className={`${item.icon} mr-4`}></i> {item.title}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
             </div>

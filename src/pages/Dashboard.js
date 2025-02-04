@@ -31,7 +31,7 @@ const Dashboard = () => {
     };
 
     return (
-        <AppLayout>
+        <AppLayout title="Dashboard">
             <div className="grid grid-cols-6 gap-4">
                 <div className="col-span-4 grid grid-cols-3 gap-4">
                     <Card title="Water Quality" className="col-span-3">
