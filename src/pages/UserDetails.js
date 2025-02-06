@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import AppLayout from "../components/layouts/AppLayout";
+import DeactivateUserModal from "../components/DeactivateUserModal";
 
 const UserDetails = () => {
     // State to manage edit mode
     const [isEditable, setIsEditable] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    const handleDeactivate = (reason) => {
+        console.log(`Deactivated user with reason: ${reason}`);
+        closeModal();
+    };
 
     // Mock user data
     const [user, setUser] = useState({
@@ -115,6 +125,7 @@ const UserDetails = () => {
                             <div className="flex justify-between mt-6">
                                 <button
                                     type="button"
+                                    onClick={openModal}
                                     className="flex items-center px-4 py-2 bg-red-100 text-red-500 rounded-lg hover:bg-red-200"
                                 >
                                     <i className="fas fa-user-times mr-2"></i> Deactivate User
@@ -141,6 +152,13 @@ const UserDetails = () => {
                         </form>
                     </div>
                 </div>
+
+                {/* Deactivate User Modal */}
+                <DeactivateUserModal
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                    onSave={handleDeactivate}
+                />
             </div>
         </AppLayout>
     );

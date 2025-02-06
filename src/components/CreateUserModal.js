@@ -7,7 +7,7 @@ const CreateUserModal = ({ isOpen, onClose, onSave }) => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white w-11/12 max-w-4xl rounded-lg shadow-lg p-6">
                 <div className="flex justify-between items-center border-b px-6 py-4">
-                    <h2 className="text-xl font-bold">Create Admin/User</h2>
+                    <h2 className="text-xl text-sky-900 font-bold">Create Admin/User</h2>
                     <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
                         <i className="fas fa-times"></i>
                     </button>

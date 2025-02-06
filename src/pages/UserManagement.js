@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import AppLayout from "../components/layouts/AppLayout";
 import CreateUserModal from "../components/CreateUserModal";
 import { useNavigate } from "react-router-dom";
+import DeactivateUserModal from "../components/DeactivateUserModal";
 
 const UserManagement = () => {
+    const [selectedUserId, setSelectedUserId] = useState(null);
     const navigate = useNavigate();
     const [users] = useState([
         { id: 1, name: "Christopher Brown", email: "chris.brown@example.com", userType: "Admin" },
@@ -13,14 +15,30 @@ const UserManagement = () => {
         { id: 5, name: "Sarah Martinez", email: "sarah.martinez@example.com", userType: "User" },
     ]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    const openDeleteModal = (userId) => {
+        setSelectedUserId(userId);
+        setIsDeleteModalOpen(true);
+    };
+
+    const closDeleteModal = () => {
+        setSelectedUserId(null);
+        setIsDeleteModalOpen(false);
+    };
 
     const handleSave = () => {
         // Add save logic here
         console.log("User saved!");
         closeModal();
+    };
+
+    const handleDeactivate = (reason, userId) => {
+        console.log(`Deactivated User ID: ${userId} with Reason: ${reason}`);
+        closDeleteModal();
     };
 
 
@@ -61,7 +79,7 @@ const UserManagement = () => {
                                         <button onClick={() => navigate(`/user-management/${user.id}`)} className="text-blue-500 hover:underline flex items-center">
                                             <i className="fas fa-eye mr-1"></i> View
                                         </button>
-                                        <button className="text-red-500 hover:underline flex items-center">
+                                        <button onClick={() => openDeleteModal(user.id)} className="text-red-500 hover:underline flex items-center">
                                             <i className="fas fa-ban mr-1"></i> Deactivate
                                         </button>
                                     </td>
@@ -76,6 +94,14 @@ const UserManagement = () => {
                     isOpen={isModalOpen}
                     onClose={closeModal}
                     onSave={handleSave}
+                />
+
+                {/* Deactivate User Modal */}
+                <DeactivateUserModal
+                    isOpen={isDeleteModalOpen}
+                    onClose={closDeleteModal}
+                    onSave={handleDeactivate}
+                    userId={selectedUserId}
                 />
 
             </div>
