@@ -10,12 +10,14 @@ import Dashboard from './pages/Dashboard';
 import HatcheryManagement from './pages/HatcheryManagement';
 import UserManagement from './pages/UserManagement';
 import UserDetails from './pages/UserDetails';
+import InventoryManagement from './pages/InventoryManagement';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/inventory-management" element={<InventoryManagement />} />
         <Route path="/hatchery-management" element={<HatcheryManagement />} />
         <Route path="/user-management" element={<UserManagement />} />
         <Route path="/user-management/:userId" element={<UserDetails />} />

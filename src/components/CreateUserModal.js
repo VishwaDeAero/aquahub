@@ -89,7 +89,7 @@ const CreateUserModal = ({ isOpen, onClose, onSave }) => {
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="w-1/5 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                                className="w-1/5 px-4 py-2 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
                             >
                                 Cancel
                             </button>

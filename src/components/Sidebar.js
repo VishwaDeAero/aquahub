@@ -11,7 +11,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="w-64 bg-gradient-to-r from-sky-600 to-sky-900 h-screen text-white flex flex-col justify-between">
+        <div className="w-72 bg-gradient-to-r from-sky-600 to-sky-900 h-screen text-white flex flex-col justify-between">
             <div>
                 <div className="p-6">
                     <h1 className="text-2xl font-bold">AquaHub</h1>
@@ -35,7 +35,7 @@ const Sidebar = () => {
                 </nav>
             </div>
             <div className="p-6">
-                <button className="flex items-center bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-200">
+                <button className="items-center bg-white text-darkblue w-full px-4 py-2 rounded-lg hover:bg-gray-200">
                     <i className="fas fa-sign-out-alt mr-2"></i> Logout
                 </button>
             </div>

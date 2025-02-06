@@ -2,7 +2,7 @@ import React from "react";
 
 const Topbar = ({ title }) => {
     return (
-        <div className="bg-white flex justify-between items-center px-6 py-4 shadow-md">
+        <div className="bg-white flex justify-between items-center px-6 py-4 shadow-md z-10">
             <h1 className="text-xl font-bold text-darkblue">{title}</h1>
             <div className="flex items-center space-x-6">
                 <i className="fas fa-bell text-gray-500"></i>
