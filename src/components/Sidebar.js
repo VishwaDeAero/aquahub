@@ -11,7 +11,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="w-64 bg-gradient-to-b from-blue-600 to-blue-700 h-screen text-white flex flex-col justify-between">
+        <div className="w-64 bg-gradient-to-r from-sky-600 to-sky-900 h-screen text-white flex flex-col justify-between">
             <div>
                 <div className="p-6">
                     <h1 className="text-2xl font-bold">AquaHub</h1>
@@ -23,7 +23,7 @@ const Sidebar = () => {
                                 <NavLink
                                     to={item.path}
                                     className={({ isActive }) =>
-                                        `w-full block px-5 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-blue-500 font-bold" : ""
+                                        `w-full block px-5 py-3 hover:bg-blue-500 cursor-pointer ${isActive ? "bg-sky-700 font-bold" : ""
                                         }`
                                     }
                                 >
