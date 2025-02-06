@@ -9,6 +9,7 @@ import Success from './pages/Success';
 import Dashboard from './pages/Dashboard';
 import HatcheryManagement from './pages/HatcheryManagement';
 import UserManagement from './pages/UserManagement';
+import UserDetails from './pages/UserDetails';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/hatchery-management" element={<HatcheryManagement />} />
         <Route path="/user-management" element={<UserManagement />} />
+        <Route path="/user-management/:userId" element={<UserDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recovery" element={<Recovery />} />
         <Route path="/verify-code" element={<VerifyCode />} />

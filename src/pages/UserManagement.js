@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import AppLayout from "../components/layouts/AppLayout";
 import CreateUserModal from "../components/CreateUserModal";
+import { useNavigate } from "react-router-dom";
 
 const UserManagement = () => {
+    const navigate = useNavigate();
     const [users] = useState([
         { id: 1, name: "Christopher Brown", email: "chris.brown@example.com", userType: "Admin" },
         { id: 2, name: "Matthew Wilson", email: "matt.wilson@example.com", userType: "User" },
@@ -56,7 +58,7 @@ const UserManagement = () => {
                                     <td className="px-4 py-2">{user.email}</td>
                                     <td className="px-4 py-2">{user.userType}</td>
                                     <td className="px-4 py-2 flex items-center space-x-4">
-                                        <button className="text-blue-500 hover:underline flex items-center">
+                                        <button onClick={() => navigate(`/user-management/${user.id}`)} className="text-blue-500 hover:underline flex items-center">
                                             <i className="fas fa-eye mr-1"></i> View
                                         </button>
                                         <button className="text-red-500 hover:underline flex items-center">
