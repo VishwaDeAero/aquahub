@@ -41,9 +41,9 @@ const ManageInventory = () => {
   };
 
   return (
-    <div>
+    <div className="p-6">
       {/* Label + Dropdown + Search Button */}
-      <div className="flex items-center space-x-4 mb-6 p-6">
+      <div className="flex items-center space-x-4 mb-6">
         {/* Label */}
         <label className="font-medium">Item Type</label>
 
