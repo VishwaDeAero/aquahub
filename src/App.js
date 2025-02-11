@@ -11,6 +11,7 @@ import HatcheryManagement from './pages/HatcheryManagement';
 import UserManagement from './pages/UserManagement';
 import UserDetails from './pages/UserDetails';
 import InventoryManagement from './pages/InventoryManagement';
+import BroodstockManagement from './pages/BroodstockManagement';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path="/password-reset-confirm" element={<PasswordResetConfirm />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/success" element={<Success />} />
+        {/* Menu Icons */}
+        <Route path="/broodstock-management" element={<BroodstockManagement />} />
       </Routes>
     </Router>
   );
