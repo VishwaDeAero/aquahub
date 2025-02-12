@@ -13,6 +13,7 @@ import UserDetails from './pages/UserDetails';
 import InventoryManagement from './pages/InventoryManagement';
 import BroodstockManagement from './pages/BroodstockManagement';
 import QuarantineMonitoring from './pages/QuarantineMonitoring';
+import SpawningMonitoring from './pages/SpawningMonitoring';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         {/* Menu Icons */}
         <Route path="/broodstock-management" element={<BroodstockManagement />} />
         <Route path="/quarantine-monitoring" element={<QuarantineMonitoring />} />
+        <Route path="/spawning-monitoring" element={<SpawningMonitoring />} />
       </Routes>
     </Router>
   );
