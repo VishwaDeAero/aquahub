@@ -14,6 +14,7 @@ import InventoryManagement from './pages/InventoryManagement';
 import BroodstockManagement from './pages/BroodstockManagement';
 import QuarantineMonitoring from './pages/QuarantineMonitoring';
 import SpawningMonitoring from './pages/SpawningMonitoring';
+import HatchingMonitoring from './pages/HatchingMonitoring';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/broodstock-management" element={<BroodstockManagement />} />
         <Route path="/quarantine-monitoring" element={<QuarantineMonitoring />} />
         <Route path="/spawning-monitoring" element={<SpawningMonitoring />} />
+        <Route path="/hatching-monitoring" element={<HatchingMonitoring />} />
       </Routes>
     </Router>
   );
