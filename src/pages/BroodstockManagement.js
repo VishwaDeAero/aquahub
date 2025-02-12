@@ -47,7 +47,7 @@ const BroodstockManagement = () => {
             {/* Scrollable Icon Navigation */}
             <IconNavigation onSelect={() => { }} />
 
-            <div className="p-6">
+            <div className="p-6 border rounded-md bg-white shadow-sm">
 
                 {/* Broodstock Details */}
                 <h3 className="text-xl font-bold text-red-800 mb-4">Broodstock Details</h3>
@@ -71,7 +71,7 @@ const BroodstockManagement = () => {
                                 name={name}
                                 value={formData[name]}
                                 onChange={handleChange}
-                                className="w-1/3 p-2 border rounded-md"
+                                className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
                             />
                         </div>
                     ))}
@@ -83,8 +83,8 @@ const BroodstockManagement = () => {
                     <div className="grid grid-cols-1 gap-6">
                         {formData.waterQualityBroodstock.map((label, index) => (
                             <div key={index} className="flex items-center">
-                                <label className="w-1/3 text-sky-700">{label}</label>
-                                <input type="text" className="w-1/3 p-2 border rounded-md" />
+                                <label className="pl-32 w-1/3 text-sky-700">{label}</label>
+                                <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
                             </div>
                         ))}
                     </div>
@@ -113,7 +113,7 @@ const BroodstockManagement = () => {
                                 name={name}
                                 value={formData[name]}
                                 onChange={handleChange}
-                                className="w-1/3 p-2 border rounded-md"
+                                className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
                             />
                         </div>
                     ))}
@@ -125,8 +125,8 @@ const BroodstockManagement = () => {
                     <div className="grid grid-cols-1 gap-6">
                         {formData.waterQualityNauplia.map((label, index) => (
                             <div key={index} className="flex items-center">
-                                <label className="w-1/3 text-sky-700">{label}</label>
-                                <input type="text" className="w-1/3 p-2 border rounded-md" />
+                                <label className="pl-32 w-1/3 text-sky-700">{label}</label>
+                                <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
                             </div>
                         ))}
                     </div>
@@ -137,6 +137,20 @@ const BroodstockManagement = () => {
                     </div>
                 </div>
 
+                <h6 className="text-lg font-semibold text-sky-900 mb-4">Algae Culturing Method in Nursery Hatchery :</h6>
+                <div className="mb-10">
+                    <div className="grid grid-cols-1 gap-6">
+                        <div className="flex items-center">
+                            <label className="w-1/3 text-right font-semibold px-4">Indoor</label>
+                            <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+                        </div>
+                        <div className="flex items-center">
+                            <label className="w-1/3 text-right font-semibold px-4">Outdoor</label>
+                            <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+                        </div>
+                    </div>
+                </div>
+
                 {/* Remarks Section */}
                 <div className="mt-6">
                     <label className="text-lg w-full flex font-bold text-gray-700">Remarks</label>
@@ -144,7 +158,7 @@ const BroodstockManagement = () => {
                         name="remarks"
                         value={formData.remarks}
                         onChange={handleChange}
-                        className="w-2/3 p-2 border rounded-md h-24 mt-2"
+                        className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
                     ></textarea>
                 </div>
 

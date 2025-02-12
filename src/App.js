@@ -12,6 +12,7 @@ import UserManagement from './pages/UserManagement';
 import UserDetails from './pages/UserDetails';
 import InventoryManagement from './pages/InventoryManagement';
 import BroodstockManagement from './pages/BroodstockManagement';
+import QuarantineMonitoring from './pages/QuarantineMonitoring';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         {/* Menu Icons */}
         <Route path="/broodstock-management" element={<BroodstockManagement />} />
+        <Route path="/quarantine-monitoring" element={<QuarantineMonitoring />} />
       </Routes>
     </Router>
   );
