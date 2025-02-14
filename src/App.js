@@ -21,6 +21,7 @@ import IndoorAlgaeMonitoring from './pages/IndoorAlgaeMonitoring';
 import OutdoorAlgaeMonitoring from './pages/OutdoorAlgaeMonitoring';
 import ArtemiaMonitoring from './pages/ArtemiaMonitoring';
 import HarvestingMonitoring from './pages/HarvestingMonitoring';
+import DiseaseManagement from './pages/DiseaseManagement';
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
         <Route path="/password-reset-confirm" element={<PasswordResetConfirm />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/success" element={<Success />} />
-        {/* Menu Icons */}
+        {/* Nav Icons */}
         <Route path="/broodstock-management" element={<BroodstockManagement />} />
         <Route path="/quarantine-monitoring" element={<QuarantineMonitoring />} />
         <Route path="/spawning-monitoring" element={<SpawningMonitoring />} />
@@ -48,6 +49,8 @@ function App() {
         <Route path="/outdoor-algae-monitoring" element={<OutdoorAlgaeMonitoring />} />
         <Route path="/artemia-monitoring" element={<ArtemiaMonitoring />} />
         <Route path="/harvesting-monitoring" element={<HarvestingMonitoring />} />
+        <Route path="/harvesting-monitoring" element={<HarvestingMonitoring />} />
+        <Route path="/disease-management" element={<DiseaseManagement />} />
       </Routes>
     </Router>
   );
