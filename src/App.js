@@ -18,6 +18,7 @@ import HatchingMonitoring from './pages/HatchingMonitoring';
 import MaturationTankMonitoring from './pages/MaturationTankMonitoring';
 import TankMonitoring from './pages/TankMonitoring';
 import IndoorAlgaeMonitoring from './pages/IndoorAlgaeMonitoring';
+import OutdoorAlgaeMonitoring from './pages/OutdoorAlgaeMonitoring';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/maturation-tank-monitoring" element={<MaturationTankMonitoring />} />
         <Route path="/tank-monitoring" element={<TankMonitoring />} />
         <Route path="/indoor-algae-monitoring" element={<IndoorAlgaeMonitoring />} />
+        <Route path="/outdoor-algae-monitoring" element={<OutdoorAlgaeMonitoring />} />
       </Routes>
     </Router>
   );
