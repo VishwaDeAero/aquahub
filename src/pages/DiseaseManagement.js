@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AppLayout from "../components/layouts/AppLayout";
 import IconNavigation from "../components/IconNavigation";
+import DiseaseModal from "../components/DiseaseModal";
 
 const DiseaseManagement = () => {
     const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const DiseaseManagement = () => {
         section: "",
         tankNumber: "",
         disease: "",
-        diseases: [""], // Allows dynamic addition of diseases
+        diseases: ["Disease 1", "Disease 2", "Disease 3"], // Allows dynamic addition of diseases
         bacterial: false,
         viral: false,
         parasitic: false,
@@ -23,6 +24,8 @@ const DiseaseManagement = () => {
         treatmentPhysical: false,
     });
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     // Handle input changes
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -32,11 +35,12 @@ const DiseaseManagement = () => {
         }));
     };
 
-    // Handle dynamic disease input fields
-    const handleAddDisease = () => {
+    // Handle adding a new disease
+    const handleAddDisease = (newDisease) => {
         setFormData((prevData) => ({
             ...prevData,
-            diseases: [...prevData.diseases, ""],
+            diseases: [...prevData.diseases, newDisease],
+            disease: newDisease, // Automatically select the newly added disease
         }));
     };
 
@@ -128,35 +132,18 @@ const DiseaseManagement = () => {
                             className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
                         >
                             <option value="">Select Disease</option>
-                            <option value="Type1">Type 1</option>
-                            <option value="Type2">Type 2</option>
-                            <option value="Type3">Type 3</option>
+                            {(formData.diseases).map((opt) => (
+                                <option key={opt} value={opt}>
+                                    {opt}
+                                </option>
+                            ))}
                         </select>
                     </div>
 
-                    {/* Dynamic Disease Fields */}
-                    {formData.diseases.map((disease, index) => (
-                        <div className="flex items-center">
-                            <label className="w-1/3 text-gray-900"></label>
-                            <input
-                                key={index}
-                                type="text"
-                                value={disease}
-                                onChange={(e) => {
-                                    const updatedDiseases = [...formData.diseases];
-                                    updatedDiseases[index] = e.target.value;
-                                    setFormData({ ...formData, diseases: updatedDiseases });
-                                }}
-                                className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
-                            />
-                        </div>
-                    ))}
-
                     {/* Add More Disease */}
-
                     <div className="flex items-center">
                         <button type="button"
-                            onClick={handleAddDisease}
+                            onClick={() => setIsModalOpen(true)}
                             className="text-sky-900 text-sm flex items-center">
                             <span className="me-2 font-bold text-sky-900">Add More </span><i class="fa-solid fa-plus border border-sky-900 rounded-full p-1"></i>
                         </button>
@@ -243,6 +230,14 @@ const DiseaseManagement = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Disease Modal */}
+            {isModalOpen && (
+                <DiseaseModal
+                    onClose={() => setIsModalOpen(false)}
+                    onSave={handleAddDisease}
+                />
+            )}
         </AppLayout>
     );
 };
