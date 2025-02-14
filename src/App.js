@@ -20,6 +20,7 @@ import TankMonitoring from './pages/TankMonitoring';
 import IndoorAlgaeMonitoring from './pages/IndoorAlgaeMonitoring';
 import OutdoorAlgaeMonitoring from './pages/OutdoorAlgaeMonitoring';
 import ArtemiaMonitoring from './pages/ArtemiaMonitoring';
+import HarvestingMonitoring from './pages/HarvestingMonitoring';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/indoor-algae-monitoring" element={<IndoorAlgaeMonitoring />} />
         <Route path="/outdoor-algae-monitoring" element={<OutdoorAlgaeMonitoring />} />
         <Route path="/artemia-monitoring" element={<ArtemiaMonitoring />} />
+        <Route path="/harvesting-monitoring" element={<HarvestingMonitoring />} />
       </Routes>
     </Router>
   );
