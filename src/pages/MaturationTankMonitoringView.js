@@ -79,8 +79,8 @@ function MaturationTankMonitoringView() {
                                     </td>
                                     <td className="px-4 py-2">{item.date}</td>
                                     <td className="px-4 py-2">{item.broodstock}</td>
-                                    <td className="px-4 py-2">{item.tankNumber}</td>
-                                    <td className="px-4 py-2 text-center">{item.spawnerNumber}</td>
+                                    <td className="px-4 py-2">{item.feedTime}</td>
+                                    <td className="px-4 py-2 text-center">{item.area}</td>
                                     <td className="px-4 py-2 text-center">
                                         <button className="text-yellow-500 text-lg">
                                             <i className="fas fa-eye mr-1"></i>
