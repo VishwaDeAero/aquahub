@@ -24,6 +24,7 @@ import HarvestingMonitoring from './pages/HarvestingMonitoring';
 import DiseaseManagement from './pages/DiseaseManagement';
 import BroodstockManagementView from './pages/BroodstockManagementView';
 import QuarantineMonitoringView from './pages/QuarantineMonitoringView';
+import SpawningMonitoringView from './pages/SpawningMonitoringView';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         {/* Nav Icon Table Views */}
         <Route path="/broodstock-management/view" element={<BroodstockManagementView />} />
         <Route path="/quarantine-monitoring/view" element={<QuarantineMonitoringView />} />
+        <Route path="/spawning-monitoring/view" element={<SpawningMonitoringView />} />
       </Routes>
     </Router>
   );
