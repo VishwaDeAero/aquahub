@@ -49,6 +49,10 @@ const IndoorAlgaeMonitoring = () => {
 
             <div className="p-6 border rounded-md bg-white shadow-sm">
 
+                <div className="flex justify-end">
+                    <button className="px-2 py-1 w-20 border border-sky-900 bg-slate-50 text-gray-700 rounded-full hover:bg-gray-300">View</button>
+                </div>
+
                 {/* Form */}
                 <div className="grid grid-cols-1 gap-6 mb-10">
 
@@ -109,7 +113,7 @@ const IndoorAlgaeMonitoring = () => {
                             </div>
                         </div>
                     ))}
-                    
+
                     {/* Single Fields */}
                     {[
                         { label: "Bag Supply", name: "bagSupply", type: "number" },
