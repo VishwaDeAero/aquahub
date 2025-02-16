@@ -26,6 +26,7 @@ import BroodstockManagementView from './pages/BroodstockManagementView';
 import QuarantineMonitoringView from './pages/QuarantineMonitoringView';
 import SpawningMonitoringView from './pages/SpawningMonitoringView';
 import HatchingMonitoringView from './pages/HatchingMonitoringView';
+import MaturationTankMonitoringView from './pages/MaturationTankMonitoringView';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path="/quarantine-monitoring/view" element={<QuarantineMonitoringView />} />
         <Route path="/spawning-monitoring/view" element={<SpawningMonitoringView />} />
         <Route path="/hatching-monitoring/view" element={<HatchingMonitoringView />} />
+        <Route path="/maturation-tank-monitoring/view" element={<MaturationTankMonitoringView />} />
       </Routes>
     </Router>
   );
