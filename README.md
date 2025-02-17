@@ -1,3 +1,6 @@
+## Live Web Preview
+[![Netlify Status](https://api.netlify.com/api/v1/badges/85d0a247-5c43-4e42-b713-3905d16624eb/deploy-status)](https://app.netlify.com/sites/project-aquahub/deploys)
+
 ## UI Design
 
 [Aquahub Figma UI Design](https://www.figma.com/design/5VRpFuU9142JqqX36M69K7/Login-page-(Community)?node-id=0-1&p=f&t=90hrNvgxKqH7s84U-0)
