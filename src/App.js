@@ -29,6 +29,7 @@ import HatchingMonitoringView from './pages/HatchingMonitoringView';
 import MaturationTankMonitoringView from './pages/MaturationTankMonitoringView';
 import TankMonitoringView from './pages/TankMonitoringView';
 import IndoorAlgaeMonitoringView from './pages/IndoorAlgaeMonitoringView';
+import OutdoorAlgaeMonitoringView from './pages/OutdoorAlgaeMonitoringView';
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
         <Route path="/maturation-tank-monitoring/view" element={<MaturationTankMonitoringView />} />
         <Route path="/tank-monitoring/view" element={<TankMonitoringView />} />
         <Route path="/indoor-algae-monitoring/view" element={<IndoorAlgaeMonitoringView />} />
+        <Route path="/outdoor-algae-monitoring/view" element={<OutdoorAlgaeMonitoringView />} />
       </Routes>
     </Router>
   );
