@@ -1,7 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+    const navigate = useNavigate();
     // Menu items array
     const menuItems = [
         { title: "Dashboard", path: "/", icon: "fas fa-home" },
@@ -35,7 +36,9 @@ const Sidebar = () => {
                 </nav>
             </div>
             <div className="p-6">
-                <button className="items-center bg-white text-darkblue w-full px-4 py-2 rounded-lg hover:bg-gray-200">
+                <button onClick={() => {
+                    navigate("/login");
+                }} className="items-center bg-white text-darkblue w-full px-4 py-2 rounded-lg hover:bg-gray-200">
                     <i className="fas fa-sign-out-alt mr-2"></i> Logout
                 </button>
             </div>
