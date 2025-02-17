@@ -22,12 +22,24 @@ import OutdoorAlgaeMonitoring from './pages/OutdoorAlgaeMonitoring';
 import ArtemiaMonitoring from './pages/ArtemiaMonitoring';
 import HarvestingMonitoring from './pages/HarvestingMonitoring';
 import DiseaseManagement from './pages/DiseaseManagement';
+import BroodstockManagementView from './pages/BroodstockManagementView';
+import QuarantineMonitoringView from './pages/QuarantineMonitoringView';
+import SpawningMonitoringView from './pages/SpawningMonitoringView';
+import HatchingMonitoringView from './pages/HatchingMonitoringView';
+import MaturationTankMonitoringView from './pages/MaturationTankMonitoringView';
+import TankMonitoringView from './pages/TankMonitoringView';
+import IndoorAlgaeMonitoringView from './pages/IndoorAlgaeMonitoringView';
+import OutdoorAlgaeMonitoringView from './pages/OutdoorAlgaeMonitoringView';
+import ArtemiaMonitoringView from './pages/ArtemiaMonitoringView';
+import HarvestingMonitoringView from './pages/HarvestingMonitoringView';
+import DiseaseManagementView from './pages/DiseaseManagementView';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/inventory-management" element={<InventoryManagement />} />
         <Route path="/hatchery-management" element={<HatcheryManagement />} />
         <Route path="/user-management" element={<UserManagement />} />
@@ -49,8 +61,19 @@ function App() {
         <Route path="/outdoor-algae-monitoring" element={<OutdoorAlgaeMonitoring />} />
         <Route path="/artemia-monitoring" element={<ArtemiaMonitoring />} />
         <Route path="/harvesting-monitoring" element={<HarvestingMonitoring />} />
-        <Route path="/harvesting-monitoring" element={<HarvestingMonitoring />} />
         <Route path="/disease-management" element={<DiseaseManagement />} />
+        {/* Nav Icon Table Views */}
+        <Route path="/broodstock-management/view" element={<BroodstockManagementView />} />
+        <Route path="/quarantine-monitoring/view" element={<QuarantineMonitoringView />} />
+        <Route path="/spawning-monitoring/view" element={<SpawningMonitoringView />} />
+        <Route path="/hatching-monitoring/view" element={<HatchingMonitoringView />} />
+        <Route path="/maturation-tank-monitoring/view" element={<MaturationTankMonitoringView />} />
+        <Route path="/tank-monitoring/view" element={<TankMonitoringView />} />
+        <Route path="/indoor-algae-monitoring/view" element={<IndoorAlgaeMonitoringView />} />
+        <Route path="/outdoor-algae-monitoring/view" element={<OutdoorAlgaeMonitoringView />} />
+        <Route path="/artemia-monitoring/view" element={<ArtemiaMonitoringView />} />
+        <Route path="/harvesting-monitoring/view" element={<HarvestingMonitoringView />} />
+        <Route path="/disease-management/view" element={<DiseaseManagementView />} />
       </Routes>
     </Router>
   );
