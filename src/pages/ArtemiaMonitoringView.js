@@ -105,7 +105,7 @@ function ArtemiaMonitoringView() {
                 {/* Edit Modal */}
                 <FormModal
                     isOpen={isModalOpen}
-                    title="Edit Indoor Algae"
+                    title="Edit Artemia"
                     form={<ArtemiaMonitoringForm initialData={selectedArtemia} onSubmit={handleSave} onCancel={() => setIsModalOpen(false)} />}
                     onClose={() => setIsModalOpen(false)}
                 />

@@ -29,6 +29,7 @@ const ArtemiaMonitoring = () => {
 
                 {/* Reusable Artemia Monitoring Component */}
                 <ArtemiaMonitoringForm initialData={null} onSubmit={handleSave} onCancel={() => navigate("/maturation-monitoring/view")} />
+                    
             </div>
         </AppLayout>
     );
