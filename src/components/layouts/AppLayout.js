@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../Sidebar";
 import Topbar from "../Topbar";
 
 const AppLayout = ({ title, children }) => {
-    return (
-        <div className="h-screen flex">
-            {/* Sidebar */}
-            <Sidebar />
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-            {/* Main Content */}
-            <div className="flex flex-col flex-1 overflow-hidden">
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    return (
+        <div className="h-screen flex overflow-hidden">
+            {/* Sidebar (Fixed on Desktop, Toggles on Mobile) */}
+            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+            {/* Main Content Area */}
+            <div
+                className={`flex flex-col flex-1 transition-all duration-300 ${isSidebarOpen ? "md:ml-72" : "ml-0"
+                    }`}
+            >
                 {/* Topbar */}
-                <Topbar title={title}/>
+                <Topbar title={title} toggleSidebar={toggleSidebar} />
 
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-4 bg-slate-100">

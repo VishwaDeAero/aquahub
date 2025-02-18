@@ -1,9 +1,15 @@
 import React from "react";
 
-const Topbar = ({ title }) => {
+const Topbar = ({ title, toggleSidebar }) => {
     return (
-        <div className="bg-white flex justify-between items-center px-6 py-4 shadow-md z-10">
-            <h1 className="text-xl font-bold text-darkblue">{title}</h1>
+        <div className="bg-white flex justify-between items-center px-6 py-4 shadow-md z-10 relative">
+            {/* Hamburger Button (Visible on Mobile) */}
+            <button className="md:hidden text-darkblue text-2xl" onClick={toggleSidebar}>
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <h1 className="text-xl font-bold text-darkblue ms-4 md:ms-0">{title}</h1>
+
             <div className="flex items-center space-x-6">
                 <i className="fas fa-bell text-gray-500"></i>
                 <div className="flex items-center">
