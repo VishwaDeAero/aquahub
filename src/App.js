@@ -33,6 +33,7 @@ import OutdoorAlgaeMonitoringView from './pages/OutdoorAlgaeMonitoringView';
 import ArtemiaMonitoringView from './pages/ArtemiaMonitoringView';
 import HarvestingMonitoringView from './pages/HarvestingMonitoringView';
 import DiseaseManagementView from './pages/DiseaseManagementView';
+import ProfileDetails from './pages/ProfileDetails';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/my-profile" element={<ProfileDetails />} />
         <Route path="/inventory-management" element={<InventoryManagement />} />
         <Route path="/hatchery-management" element={<HatcheryManagement />} />
         <Route path="/user-management" element={<UserManagement />} />
