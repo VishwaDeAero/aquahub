@@ -16,7 +16,7 @@ const AppLayout = ({ title, children }) => {
 
             {/* Main Content Area */}
             <div
-                className={`flex flex-col flex-1 transition-all duration-300 ${isSidebarOpen ? "md:ml-72" : "ml-0"
+                className={`flex w-full flex-col flex-1 transition-all duration-300 ${isSidebarOpen ? "md:ml-72" : "ml-0"
                     }`}
             >
                 {/* Topbar */}
