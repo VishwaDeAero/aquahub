@@ -5,7 +5,7 @@ const Topbar = ({ title, toggleSidebar }) => {
         <div className="bg-white flex justify-between items-center px-6 py-4 shadow-md z-10 relative">
             {/* Hamburger Button (Visible on Mobile) */}
             <button className="md:hidden text-darkblue text-2xl" onClick={toggleSidebar}>
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                <i className="fa fa-bars" aria-hidden="true"></i>
             </button>
 
             <h1 className="text-xl font-bold text-darkblue ms-4 md:ms-0">{title}</h1>

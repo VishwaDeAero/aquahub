@@ -25,7 +25,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     <div className="p-6 flex justify-between items-center">
                         <h1 className="text-2xl font-bold">AquaHub</h1>
                         <button className="md:hidden text-white text-2xl" onClick={toggleSidebar}>
-                            <i class="fa fa-times" aria-hidden="true"></i>
+                            <i className="fa fa-times" aria-hidden="true"></i>
                         </button>
                     </div>
                     <nav className="mt-6">
