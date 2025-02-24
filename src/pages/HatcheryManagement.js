@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const HatcheryManagement = () => {
   const navigate = useNavigate();
+
   // Dummy data for the grid items
   const sections = [
     { title: "Broodstock Management", icon: "/img/menu-icons/BroodstockManagementIcon.png", path: "/broodstock-management" },
@@ -21,22 +22,22 @@ const HatcheryManagement = () => {
 
   return (
     <AppLayout title="Hatchery Management">
-      <div className="p-6">
-        <div className="bg-white shadow-md rounded-lg p-10">
-          {/* Grid for sections */}
-          <div className="grid grid-cols-4 gap-5">
+      <div className="p-4 sm:p-6">
+        <div className="bg-white shadow-md rounded-lg p-6 sm:p-10">
+          {/* Responsive Grid for sections */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {sections.map((section, index) => (
               <button
                 key={index}
                 onClick={() => navigate(section.path)}
-                className="flex flex-col items-center rounded-3xl py-12 p-8 hover:shadow-lg transition"
+                className="flex flex-col items-center rounded-3xl py-6 p-6 hover:shadow-lg transition transform hover:scale-105 bg-gray-50"
               >
                 <img
                   src={section.icon}
                   alt={section.title}
-                  className="w-12 h-12 mb-4"
+                  className="w-12 h-12 mb-3 sm:mb-4"
                 />
-                <p className="text-center text-lg font-medium text-darkblue">
+                <p className="text-center text-sm sm:text-lg font-medium text-darkblue">
                   {section.title}
                 </p>
               </button>

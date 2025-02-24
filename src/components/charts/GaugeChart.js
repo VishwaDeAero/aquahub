@@ -1,16 +1,16 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
-const GaugeChart = ({ label, value, maxValue }) => {
+const GaugeChart = ({ label, value, maxValue, color }) => {
   // Calculate the percentage value
   const percentage = Math.round((value / maxValue) * 100);
-
+  const chartColor = (color)? color: "#4CAF50";
   // Data for the Doughnut chart
   const data = {
     datasets: [
       {
         data: [value, maxValue - value], // Actual and remaining values
-        backgroundColor: ["#4CAF50", "#E0E0E0"], // Green for actual, gray for remaining
+        backgroundColor: [chartColor, "#E0E0E0"], // Green for actual, gray for remaining
         borderWidth: 0,
         cutout: "80%", // Adjust the inner radius for the gauge effect
       },
