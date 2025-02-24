@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AppLayout from "../components/layouts/AppLayout";
-import CreateUserModal from "../components/CreateUserModal";
+import CreateUserModal from "../components/modals/CreateUserModal";
 import { useNavigate } from "react-router-dom";
 import DeactivateUserModal from "../components/DeactivateUserModal";
 
@@ -46,11 +46,14 @@ const UserManagement = () => {
         <AppLayout title="User Management">
             <div className="p-6">
                 {/* Header Section */}
-                <div className="flex justify-between items-center mb-6">
-                    <button className="bg-darkblue text-white px-4 py-2 rounded-lg flex items-center shadow hover:bg-blue-900">
-                        <i class="fa-solid fa-users mr-2"></i> User List
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4 mb-6">
+                    <button className="w-full sm:w-auto bg-darkblue text-white px-4 py-2 rounded-lg flex items-center justify-center shadow hover:bg-blue-900">
+                        <i className="fa-solid fa-users mr-2"></i> User List
                     </button>
-                    <button onClick={openModal} className="bg-darkblue text-white px-4 py-2 rounded-lg flex items-center shadow hover:bg-blue-900">
+                    <button
+                        onClick={openModal}
+                        className="w-full sm:w-auto bg-darkblue text-white px-4 py-2 rounded-lg flex items-center justify-center shadow hover:bg-blue-900"
+                    >
                         <i className="fas fa-plus-circle mr-2"></i> Create Admin/User
                     </button>
                 </div>

@@ -41,7 +41,7 @@ const ManageInventory = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="bg-white p-6 rounded-lg">
       {/* Label + Dropdown + Search Button */}
       <div className="flex items-center space-x-4 mb-6">
         {/* Label */}
@@ -117,10 +117,10 @@ const ManageInventory = () => {
 
       {/* Clear & Save Buttons */}
       <div className="flex justify-end mt-6 space-x-4">
-        <button className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+        <button className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
           Clear
         </button>
-        <button className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+        <button className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
           Save
         </button>
       </div>

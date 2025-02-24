@@ -33,7 +33,7 @@ const StockOut = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="bg-white p-6 rounded-lg">
       {/* Label + Dropdown + Search Button */}
       <div className="flex items-center space-x-4 mb-6">
         {/* Label */}
@@ -147,7 +147,7 @@ const StockOut = () => {
 
       {/* Save Button */}
       <div className="flex justify-end mt-6">
-        <button className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+        <button className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
           Save
         </button>
       </div>

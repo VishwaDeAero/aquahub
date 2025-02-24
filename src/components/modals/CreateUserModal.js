@@ -20,7 +20,7 @@ const CreateUserModal = ({ isOpen, onClose, onSave }) => {
                             onSave();
                         }}
                     >
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid md:grid-cols-2 gap-2 md:gap-4">
                             {/* First Name */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">
@@ -85,17 +85,17 @@ const CreateUserModal = ({ isOpen, onClose, onSave }) => {
                             </div>
                         </div>
                         {/* Buttons */}
-                        <div className="flex justify-end mt-6 space-x-4">
+                        <div className="flex flex-col sm:flex-row justify-end mt-6 space-y-2 sm:space-y-0 sm:space-x-4">
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="w-1/5 px-4 py-2 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                                className="w-full sm:w-1/5 px-4 py-2 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
-                                className="w-1/5 px-4 py-2 bg-darkblue text-white rounded-lg hover:bg-blue-900"
+                                className="w-full sm:w-1/5 px-4 py-2 bg-darkblue text-white rounded-lg hover:bg-blue-900"
                             >
                                 Save
                             </button>
