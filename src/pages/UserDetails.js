@@ -3,7 +3,6 @@ import AppLayout from "../components/layouts/AppLayout";
 import DeactivateUserModal from "../components/DeactivateUserModal";
 
 const UserDetails = () => {
-    // State to manage edit mode
     const [isEditable, setIsEditable] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,7 +14,6 @@ const UserDetails = () => {
         closeModal();
     };
 
-    // Mock user data
     const [user, setUser] = useState({
         title: "Manager",
         firstName: "Thanuka",
@@ -24,16 +22,15 @@ const UserDetails = () => {
         email: "thankukamenda1234@gmail.com",
     });
 
-    // Toggle edit mode
     const toggleEditMode = () => setIsEditable((prev) => !prev);
 
     return (
         <AppLayout title="User Details">
             <div className="p-6">
-                <div className="bg-white shadow-md rounded-lg p-6 flex">
+                <div className="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row">
                     {/* User Profile Section */}
-                    <div className="flex flex-col items-center border-r pr-6">
-                        <div className="w-full flex justify-end">
+                    <div className="flex flex-col items-center md:border-r md:pr-6 w-full md:w-1/3">
+                        <div className="w-full flex justify-end md:hidden">
                             <button
                                 onClick={toggleEditMode}
                                 className="text-sky-900 hover:text-blue-700"
@@ -46,103 +43,64 @@ const UserDetails = () => {
                         </div>
                         <h2 className="text-lg font-bold">{`${user.firstName} ${user.lastName}`}</h2>
                         <p className="text-sm text-gray-500">{user.email}</p>
+                        <div className="hidden md:block mt-4">
+                            <button
+                                onClick={toggleEditMode}
+                                className="text-sky-900 hover:text-blue-700"
+                            >
+                                <i className="fas fa-pen text-xl"></i>
+                            </button>
+                        </div>
                     </div>
 
                     {/* User Details Section */}
-                    <div className="flex-1 pl-12 p-6">
+                    <div className="flex-1 md:pl-12 p-6">
                         <form>
-                            <div className="grid grid-cols-1 gap-8">
-                                {/* Title */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">
-                                        Title
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={user.title}
-                                        disabled={!isEditable}
-                                        className={`mt-1 block w-full border p-2.5 rounded-md border-gray-300 shadow-sm ${isEditable ? "focus:border-blue-500 focus:ring-blue-500" : "bg-gray-100"
-                                            }`}
-                                        onChange={(e) =>
-                                            setUser((prev) => ({ ...prev, title: e.target.value }))
-                                        }
-                                    />
-                                </div>
-
-                                {/* First Name */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">
-                                        First Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={user.firstName}
-                                        disabled={!isEditable}
-                                        className={`mt-1 block w-full border p-2.5 rounded-md border-gray-300 shadow-sm ${isEditable ? "focus:border-blue-500 focus:ring-blue-500" : "bg-gray-100"
-                                            }`}
-                                        onChange={(e) =>
-                                            setUser((prev) => ({ ...prev, firstName: e.target.value }))
-                                        }
-                                    />
-                                </div>
-
-                                {/* Last Name */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">
-                                        Last Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={user.lastName}
-                                        disabled={!isEditable}
-                                        className={`mt-1 block w-full border p-2.5 rounded-md border-gray-300 shadow-sm ${isEditable ? "focus:border-blue-500 focus:ring-blue-500" : "bg-gray-100"
-                                            }`}
-                                        onChange={(e) =>
-                                            setUser((prev) => ({ ...prev, lastName: e.target.value }))
-                                        }
-                                    />
-                                </div>
-
-                                {/* Phone Number */}
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">
-                                        Phone Number
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={user.phoneNumber}
-                                        disabled={!isEditable}
-                                        className={`mt-1 block w-full border p-2.5 rounded-md border-gray-300 shadow-sm ${isEditable ? "focus:border-blue-500 focus:ring-blue-500" : "bg-gray-100"
-                                            }`}
-                                        onChange={(e) =>
-                                            setUser((prev) => ({ ...prev, phoneNumber: e.target.value }))
-                                        }
-                                    />
-                                </div>
+                            <div className="grid grid-cols-1 gap-4">
+                                {["Title", "First Name", "Last Name", "Phone Number"].map((label, index) => (
+                                    <div key={index}>
+                                        <label className="block text-sm font-medium text-gray-700">
+                                            {label}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={user[label.toLowerCase().replace(/ /g, "")]}
+                                            disabled={!isEditable}
+                                            className={`mt-1 block w-full border p-2.5 rounded-md border-gray-300 shadow-sm ${isEditable ? "focus:border-blue-500 focus:ring-blue-500" : "bg-gray-100"
+                                                }`}
+                                            onChange={(e) =>
+                                                setUser((prev) => ({
+                                                    ...prev,
+                                                    [label.toLowerCase().replace(/ /g, "")]: e.target.value,
+                                                }))
+                                            }
+                                        />
+                                    </div>
+                                ))}
                             </div>
 
                             {/* Buttons */}
-                            <div className="flex justify-between mt-6">
+                            <div className="flex flex-col sm:flex-row justify-between mt-6 space-y-4 sm:space-y-0">
                                 <button
                                     type="button"
                                     onClick={openModal}
-                                    className="flex items-center px-4 py-2 bg-red-100 text-red-500 rounded-lg hover:bg-red-200"
+                                    className="flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-red-100 text-red-500 rounded-lg hover:bg-red-200"
                                 >
                                     <i className="fas fa-user-times mr-2"></i> Deactivate User
                                 </button>
 
                                 {isEditable && (
-                                    <div className="flex space-x-4 w-2/5">
+                                    <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-2/5">
                                         <button
                                             type="button"
                                             onClick={toggleEditMode}
-                                            className="px-4 py-2 w-full bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                                            className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
                                         >
                                             Cancel
                                         </button>
                                         <button
                                             type="submit"
-                                            className="px-4 py-2 w-full bg-sky-900 text-white rounded-lg hover:bg-blue-600"
+                                            className="w-full px-4 py-2 bg-sky-900 text-white rounded-lg hover:bg-blue-600"
                                         >
                                             Save
                                         </button>
@@ -154,11 +112,7 @@ const UserDetails = () => {
                 </div>
 
                 {/* Deactivate User Modal */}
-                <DeactivateUserModal
-                    isOpen={isModalOpen}
-                    onClose={closeModal}
-                    onSave={handleDeactivate}
-                />
+                <DeactivateUserModal isOpen={isModalOpen} onClose={closeModal} onSave={handleDeactivate} />
             </div>
         </AppLayout>
     );

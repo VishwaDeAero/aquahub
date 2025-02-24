@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AppLayout from "../components/layouts/AppLayout";
 import { Link } from "react-router-dom";
-import ChangePasswordModal from "../components/modals/changePasswordModal";
+import ChangePasswordModal from "../components/modals/ChangePasswordModal";
 
 const ProfileDetails = () => {
     // State to manage edit mode
