@@ -43,7 +43,7 @@ function App() {
         <Route path="/inventory-management" element={<InventoryManagement />} />
         <Route path="/hatchery-management" element={<HatcheryManagement />} />
         <Route path="/user-management" element={<UserManagement />} />
-        <Route path="/user-management/:userId" element={<UserDetails />} />
+        <Route path="/user-management/:id" element={<UserDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recovery" element={<Recovery />} />
         <Route path="/verify-code" element={<VerifyCode />} />
