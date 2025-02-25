@@ -92,13 +92,15 @@ const UserManagement = () => {
     <AppLayout title="User Management">
       <div className="p-6">
         {/* Header Section */}
-        <div className="flex justify-between items-center mb-6">
-          <button className="bg-darkblue text-white px-4 py-2 rounded-lg flex items-center shadow hover:bg-blue-900">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4 mb-6">
+          <button className="w-full sm:w-auto bg-darkblue text-white px-4 py-2 rounded-lg flex items-center justify-center shadow hover:bg-blue-900">
             <i className="fa-solid fa-users mr-2"></i> User List
           </button>
-          {/* Show "Create Admin/User" button only for admins */}
           {loggedInUserRole === "admin" && (
-            <button onClick={openModal} className="bg-darkblue text-white px-4 py-2 rounded-lg flex items-center shadow hover:bg-blue-900">
+            <button
+              onClick={openModal}
+              className="w-full sm:w-auto bg-darkblue text-white px-4 py-2 rounded-lg flex items-center justify-center shadow hover:bg-blue-900"
+            >
               <i className="fas fa-plus-circle mr-2"></i> Create Admin/User
             </button>
           )}
@@ -128,7 +130,6 @@ const UserManagement = () => {
                     <button onClick={() => navigate(`/user-management/${user._id}`)} className="text-blue-500 hover:underline flex items-center">
                       <i className="fas fa-eye mr-1"></i> View
                     </button>
-                    {/* Show "Deactivate" button only for admins */}
                     {loggedInUserRole === "admin" && (
                       <button onClick={() => openDeleteModal(user._id)} className="text-red-500 hover:underline flex items-center">
                         <i className="fas fa-ban mr-1"></i> Deactivate

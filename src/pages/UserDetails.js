@@ -44,7 +44,7 @@ const UserDetails = () => {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         });
-        setUser(response.data);
+        setUser(response.data); // Set the user's details
       } catch (err) {
         console.error("Failed to fetch user details", err);
       }
@@ -89,11 +89,10 @@ const UserDetails = () => {
   return (
     <AppLayout title="User Details">
       <div className="p-6">
-        <div className="bg-white shadow-md rounded-lg p-6 flex">
+        <div className="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row">
           {/* User Profile Section */}
-          <div className="flex flex-col items-center border-r pr-6">
-            <div className="w-full flex justify-end">
-              {/* Show edit button only for admins */}
+          <div className="flex flex-col items-center md:border-r md:pr-6 w-full md:w-1/3">
+            <div className="w-full flex justify-end md:hidden">
               {loggedInUserRole === "admin" && (
                 <button
                   onClick={toggleEditMode}
@@ -108,12 +107,22 @@ const UserDetails = () => {
             </div>
             <h2 className="text-lg font-bold">{`${user.firstName} ${user.lastName}`}</h2>
             <p className="text-sm text-gray-500">{user.email}</p>
+            <div className="hidden md:block mt-4">
+              {loggedInUserRole === "admin" && (
+                <button
+                  onClick={toggleEditMode}
+                  className="text-sky-900 hover:text-blue-700"
+                >
+                  <i className="fas fa-pen text-xl"></i>
+                </button>
+              )}
+            </div>
           </div>
 
           {/* User Details Section */}
-          <div className="flex-1 pl-12 p-6">
+          <div className="flex-1 md:pl-12 p-6">
             <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
-              <div className="grid grid-cols-1 gap-8">
+              <div className="grid grid-cols-1 gap-4">
                 {/* Title */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
@@ -184,31 +193,29 @@ const UserDetails = () => {
               </div>
 
               {/* Buttons */}
-              <div className="flex justify-between mt-6">
-                {/* Show "Deactivate User" button only for admins */}
+              <div className="flex flex-col sm:flex-row justify-between mt-6 space-y-4 sm:space-y-0">
                 {loggedInUserRole === "admin" && (
                   <button
                     type="button"
                     onClick={openModal}
-                    className="flex items-center px-4 py-2 bg-red-100 text-red-500 rounded-lg hover:bg-red-200"
+                    className="flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-red-100 text-red-500 rounded-lg hover:bg-red-200"
                   >
                     <i className="fas fa-user-times mr-2"></i> Deactivate User
                   </button>
                 )}
 
-                {/* Show "Save" and "Cancel" buttons only for admins in edit mode */}
-                {loggedInUserRole === "admin" && isEditable && (
-                  <div className="flex space-x-4 w-2/5">
+                {isEditable && loggedInUserRole === "admin" && (
+                  <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-2/5">
                     <button
                       type="button"
                       onClick={toggleEditMode}
-                      className="px-4 py-2 w-full bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                      className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 w-full bg-sky-900 text-white rounded-lg hover:bg-blue-600"
+                      className="w-full px-4 py-2 bg-sky-900 text-white rounded-lg hover:bg-blue-600"
                     >
                       Save
                     </button>
@@ -220,11 +227,7 @@ const UserDetails = () => {
         </div>
 
         {/* Deactivate User Modal */}
-        <DeactivateUserModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onSave={handleDeactivate}
-        />
+        <DeactivateUserModal isOpen={isModalOpen} onClose={closeModal} onSave={handleDeactivate} />
       </div>
     </AppLayout>
   );

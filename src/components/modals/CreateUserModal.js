@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios"; // Add axios for API calls
+import axios from "axios";
 
 const CreateUserModal = ({ isOpen, onClose, onSave }) => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,11 @@ const CreateUserModal = ({ isOpen, onClose, onSave }) => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5001/api/users", formData); // No password field
+      await axios.post("http://localhost:5001/api/users", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      });
       onSave();
       onClose();
     } catch (err) {
@@ -35,100 +39,96 @@ const CreateUserModal = ({ isOpen, onClose, onSave }) => {
           </button>
         </div>
         <div className="p-6">
+          {/* Form */}
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-2 md:gap-4">
+              {/* First Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   First Name
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   value={formData.firstName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, firstName: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
+              {/* Last Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Last Name
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   value={formData.lastName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, lastName: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
+              {/* Phone Number */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Phone Number
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   value={formData.phoneNumber}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phoneNumber: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
+              {/* Email */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Email
                 </label>
                 <input
                   type="email"
-                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
+              {/* Title */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Title
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   value={formData.title}
-                  onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
+              {/* User Type */}
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   User Type
                 </label>
                 <select
-                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   value={formData.role}
-                  onChange={(e) =>
-                    setFormData({ ...formData, role: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                  className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 >
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>
               </div>
             </div>
-            <div className="flex justify-end mt-6 space-x-4">
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row justify-end mt-6 space-y-2 sm:space-y-0 sm:space-x-4">
               <button
                 type="button"
                 onClick={onClose}
-                className="w-1/5 px-4 py-2 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                className="w-full sm:w-1/5 px-4 py-2 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="w-1/5 px-4 py-2 bg-darkblue text-white rounded-lg hover:bg-blue-900"
+                className="w-full sm:w-1/5 px-4 py-2 bg-darkblue text-white rounded-lg hover:bg-blue-900"
               >
                 Save
               </button>
