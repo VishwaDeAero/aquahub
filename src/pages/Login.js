@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { mockUsers } from '../utils/mockData';
+import axios from 'axios'; // Add axios for API calls
 
 // Import custom components
 import InputField from "../components/inputField";
@@ -15,18 +15,19 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Validate credentials
-    const user = mockUsers.find(
-      (u) => u.email === email && u.password === password
-    );
+    try {
+      const response = await axios.post('http://localhost:5001/api/auth/login', {
+        email,
+        password,
+      });
 
-    if (user) {
-      localStorage.setItem('authToken', JSON.stringify({ id: user.id, role: user.role }));
-      navigate('/dashboard'); // Redirect to dashboard
-    } else {
+      // Save token to localStorage and redirect
+      localStorage.setItem('authToken', response.data.token);
+      navigate('/dashboard');
+    } catch (err) {
       setError('Invalid email or password');
     }
   };
@@ -53,7 +54,7 @@ const Login = () => {
       </div>
 
       {/* Right Section */}
-      <div className="w-full  bg-white flex items-center justify-center">
+      <div className="w-full bg-white flex items-center justify-center">
         <div className="w-3/5 grid text-center">
           <h2 className="text-3xl font-bold text-center text-darkblue mb-6">LOGIN</h2>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -75,7 +76,10 @@ const Login = () => {
               icon="fa-lock"
             />
             <div className="text-gray-500">
-              Forgot your password? <a onClick={() => navigate("/recovery")} className="text-sm text-blue-500">Recover</a>
+              Forgot your password?{' '}
+              <a onClick={() => navigate('/recovery')} className="text-sm text-blue-500">
+                Recover
+              </a>
             </div>
             <button
               type="submit"

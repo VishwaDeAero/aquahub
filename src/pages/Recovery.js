@@ -1,28 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Recovery = () => {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Validate email and simulate sending recovery email
-        if (!email) {
-            setError("Email is required");
-            return;
+    
+        try {
+          // Send verification code to email
+          await axios.post("http://localhost:5001/api/auth/send-verification-code", { email });
+          navigate("/verify-code", { state: { email } }); // Pass email to VerifyCode page
+        } catch (err) {
+          setError("Failed to send verification code");
         }
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setError("Please enter a valid email address");
-            return;
-        }
-
-        setError("");
-        navigate("/verify-code", { state: { email } }); // Pass email to VerifyCode page
-    };
+      };
 
     return (
         <div className="flex items-center justify-center h-screen">

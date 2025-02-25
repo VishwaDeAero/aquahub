@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const VerifyCode = () => {
     const { state } = useLocation();
     const email = state?.email || "alpha...@gmail.com"; // Default message if no email is passed
     const [code, setCode] = useState(["", "", "", "", ""]);
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleChange = (value, index) => {
@@ -26,22 +28,37 @@ const VerifyCode = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const fullCode = code.join("");
-
+      
         if (fullCode.length === 5) {
-            // Simulate verification
-            
-            navigate("/password-reset-confirm"); // Redirect to password reset confirmation page
+          try {
+            // Verify the code
+            const response = await axios.post("http://localhost:5001/api/auth/verify-code", {
+              email,
+              code: fullCode,
+            });
+      
+            // Redirect to password reset confirmation page with the reset token
+            navigate("/reset-password", { state: { resetToken: response.data.resetToken } });
+          } catch (err) {
+            setError("Invalid or expired code");
+          }
         } else {
-            alert("Please enter a complete 5-digit code.");
+          setError("Please enter a complete 5-digit code.");
         }
-    };
+      };
 
-    const handleResend = () => {
-        alert("Verification email resent.");
-    };
+      const handleResend = async () => {
+        try {
+          // Resend the verification code
+          await axios.post("http://localhost:5001/api/auth/send-verification-code", { email });
+          alert("Verification code resent.");
+        } catch (err) {
+          setError("Failed to resend verification code");
+        }
+      };
 
     return (
         <div className="flex items-center justify-center h-screen">
