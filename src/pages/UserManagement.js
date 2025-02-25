@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppLayout from "../components/layouts/AppLayout";
-import CreateUserModal from "../components/CreateUserModal";
+import CreateUserModal from "../components/modals/CreateUserModal";
 import { useNavigate } from "react-router-dom";
 import DeactivateUserModal from "../components/DeactivateUserModal";
 import axios from "axios";

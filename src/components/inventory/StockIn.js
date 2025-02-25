@@ -3,13 +3,13 @@ import React from "react";
 const StockIn = () => {
     return (
         <div className="bg-white p-6 rounded-lg">
-            <form className="grid grid-cols-12 gap-6 space-y-4">
+            <form className="grid grid-cols-6 sm:grid-cols-12 gap-2 sm:gap-4 md:gap-6 space-y-4">
                 {/* Item Type */}
                 <div className="col-span-4 flex items-center">
                     <label className="block font-medium text-gray-700">Item Type</label>
                 </div>
                 <div className="col-span-8">
-                    <select className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    <select className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         <option>Select Type</option>
                         <option>Type 1</option>
                         <option>Type 2</option>
@@ -21,9 +21,9 @@ const StockIn = () => {
                     <label className="block font-medium text-gray-700">Item Status</label>
                 </div>
                 <div className="col-span-8">
-                    <div className="grid grid-cols-12 gap-4">
+                    <div className="grid gride-cols-6 sm:grid-cols-12 gap-4">
                         {/* Checkboxes */}
-                        <div className="col-span-3">
+                        <div className="col-span-3 flex flex-wrap gap-2 sm:flex-col sm:space-y-2">
                             <label className="flex items-center">
                                 <input type="checkbox" className="form-checkbox" />
                                 <span className="ml-2">Liquid</span>
@@ -43,20 +43,20 @@ const StockIn = () => {
                         </div>
 
                         {/* Volume and Weight */}
-                        <div className="col-span-6 flex flex-col space-y-2">
-                            <div className="flex items-center space-x-2">
+                        <div className="col-span-6 flex flex-col space-y-2 sm:space-y-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 md:mb-4">
                                 <label className="font-medium text-gray-700">Volume</label>
                                 <input
                                     type="text"
-                                    className="w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    className="w-full sm:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                     placeholder="Enter volume"
                                 />
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 md:mb-4">
                                 <label className="font-medium text-gray-700">Weight</label>
                                 <input
                                     type="text"
-                                    className="w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    className="w-full sm:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                     placeholder="Enter weight"
                                 />
                             </div>
@@ -71,7 +71,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="text"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Enter brand name"
                     />
                 </div>
@@ -83,7 +83,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="number"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Enter price"
                     />
                 </div>
@@ -95,7 +95,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="date"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     />
                 </div>
 
@@ -106,7 +106,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="text"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Enter Item Code"
                     />
                 </div>
@@ -118,7 +118,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="text"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Enter Batch No"
                     />
                 </div>
@@ -130,7 +130,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="date"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     />
                 </div>
 
@@ -141,7 +141,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="date"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     />
                 </div>
 
@@ -152,7 +152,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="number"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Enter quantity"
                     />
                 </div>
@@ -164,7 +164,7 @@ const StockIn = () => {
                 <div className="col-span-8">
                     <input
                         type="number"
-                        className="mt-1 block w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Enter quantity"
                     />
                 </div>
@@ -189,10 +189,10 @@ const StockIn = () => {
 
             {/* Buttons */}
             <div className="flex justify-end mt-6 space-x-4">
-                <button className="px-4 py-2 w-1/6 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                <button className="px-4 py-2 w-1/2 md:w-1/6 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
                     Clear
                 </button>
-                <button className="px-4 py-2 w-1/6 bg-darkblue text-white rounded-lg hover:bg-blue-900">
+                <button className="px-4 py-2 w-1/2 md:w-1/6 bg-darkblue text-white rounded-lg hover:bg-blue-900">
                     Save
                 </button>
             </div>

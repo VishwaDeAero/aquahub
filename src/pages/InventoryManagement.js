@@ -15,9 +15,10 @@ const InventoryManagement = () => {
     return (
         <AppLayout title="Inventory Management">
             {/* Tab Navigation */}
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {tabItems.map((item, index) => (
                     <button
+                        key={index}
                         onClick={() => setActiveTab(item.component)}
                         className={`px-4 py-2 bg-darkblue text-lg uppercase font-medium ${activeTab === item.component
                             ? "text-white hover:text-sky-500"
@@ -30,9 +31,9 @@ const InventoryManagement = () => {
             </div>
             <div className="py-4">
                 {/* Tab Content */}
-                    {activeTab === "stock-in" && <StockIn />}
-                    {activeTab === "manage" && <ManageInventory />}
-                    {activeTab === "stock-out" && <StockOut />}
+                {activeTab === "stock-in" && <StockIn />}
+                {activeTab === "manage" && <ManageInventory />}
+                {activeTab === "stock-out" && <StockOut />}
             </div>
         </AppLayout>
     );
