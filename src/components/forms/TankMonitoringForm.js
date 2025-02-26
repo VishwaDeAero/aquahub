@@ -61,13 +61,13 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
             {/* Form */}
 
             {/* Broodstock Dropdown */}
-            <div className="flex items-center mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center mb-8">
                 <label className="text-gray-900 me-5">Broodstock</label>
                 <select
                     name="broodstock"
                     value={formData.broodstock}
                     onChange={handleChange}
-                    className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                    className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                 >
                     <option value="">Select Broodstock</option>
                     <option value="Type1">Type 1</option>
@@ -76,7 +76,7 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                 </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 mb-10">
                 {/* Two Fields Per Row */}
                 {[
                     ["Brood Stock Area", "broodStockArea"], ["Number of Brood Stock", "numberOfBroodStock"],
@@ -108,20 +108,20 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     ["Water Level", "waterLevel"],
                     ["Water Change Percentage", "waterChangePercentage"]
                 ].map(([label, name]) => (
-                    <div className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type={name.includes("date") ? "date" : "text"}
                             name={name}
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
             </div>
 
-            <div className="grid grid-cols-3 gap-6 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 {/* Three Fields Per Row */}
                 {[
                     ["EDTA", "EDTA"],
@@ -150,23 +150,23 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     ["Salinity", "salinity"],
                     ["Temperature (c)", "temperature"]
                 ].map(([label, name]) => (
-                    <div className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type="text"
                             name={name}
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
             </div>
 
             {/* Vibrio Count */}
-            <div className="flex items-center mb-4">
-                <label className="w-1/3 text-gray-900">Vibrio Count</label>
-                <div className="w-1/3 flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center mb-4">
+                <label className="text-gray-900">Vibrio Count</label>
+                <div className="flex items-center">
                     <label className="w-2/6 text-gray-900 text-center">Large Y</label>
                     <input
                         type="number"
@@ -185,9 +185,9 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     />
                 </div>
             </div>
-            <div className="flex items-center">
-                <label className="w-1/3 text-gray-900"></label>
-                <div className="w-1/3 flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center mb-4">
+                <label className="text-gray-900"></label>
+                <div className="flex items-center">
                     <label className="w-2/6 text-gray-900 text-center">Green</label>
                     <input
                         type="number"
@@ -214,7 +214,7 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     name="remarks"
                     value={formData.remarks}
                     onChange={handleChange}
-                    className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+                    className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
                 ></textarea>
             </div>
 
@@ -227,14 +227,14 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     ["Customer Name", "customerName"],
                     ["Area", "area"]
                 ].map(([label, name]) => (
-                    <div className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type={name.includes("date") ? "date" : "text"}
                             name={name}
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
@@ -242,10 +242,10 @@ function TankMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
 
             {/* Buttons */}
             <div className="flex justify-end mt-6 space-x-4">
-                <button onClick={onCancel} className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                <button onClick={onCancel} className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
                     Clear
                 </button>
-                <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+                <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
                     Save
                 </button>
             </div>
