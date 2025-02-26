@@ -29,10 +29,11 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
 
     // Handle input changes
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, type, checked, value } = e.target;
+
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value,
+            [name]: type === "checkbox" ? checked : value,
         }));
     };
 
@@ -55,13 +56,13 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
             <div className="grid grid-cols-1 gap-6 mb-10">
 
                 {/* Broodstock Dropdown */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Broodstock</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Broodstock</label>
                     <select
                         name="broodstock"
                         value={formData.broodstock}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     >
                         <option value="">Select Broodstock</option>
                         <option value="Type1">Type 1</option>
@@ -71,37 +72,37 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
                 </div>
 
                 {/* Date */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Date</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Date</label>
                     <input
                         type="date"
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
                 {/* Sample Codes */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Sample Codes</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Sample Codes</label>
                     <input
                         type="text"
                         name="sampleCodes"
                         value={formData.sampleCodes}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
                 {/* Section Dropdown */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Section</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Section</label>
                     <select
                         name="section"
                         value={formData.section}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     >
                         <option value="">Select Section</option>
                         <option value="Type1">Type 1</option>
@@ -111,25 +112,25 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
                 </div>
 
                 {/* Tank Number */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Tank Number</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Tank Number</label>
                     <input
                         type="number"
                         name="tankNumber"
                         value={formData.tankNumber}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
                 {/* Disease Dropdown */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Disease</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Disease</label>
                     <select
                         name="disease"
                         value={formData.disease}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     >
                         <option value="">Select Disease</option>
                         {(formData.diseases).map((opt) => (
@@ -141,18 +142,18 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
                 </div>
 
                 {/* Add More Disease */}
-                <div className="flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
                     <button type="button"
                         onClick={() => setIsModalOpen(true)}
                         className="text-sky-900 text-sm flex items-center">
-                        <span className="me-2 font-bold text-sky-900">Add More </span><i class="fa-solid fa-plus border border-sky-900 rounded-full p-1"></i>
+                        <span className="me-2 font-bold text-sky-900">Add More </span><i className="fa-solid fa-plus border border-sky-900 rounded-full p-1"></i>
                     </button>
                 </div>
 
                 {/* Variety of Disease */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Variety of Disease</label>
-                    <div className="w-1/3 flex items-center justify-around">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Variety of Disease</label>
+                    <div className="flex items-center justify-around">
                         {["Bacterial", "Viral", "Parasitic"].map((disease) => (
                             <div key={disease} className="flex items-center space-x-2">
                                 <input
@@ -174,14 +175,14 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
                         name="symptoms"
                         value={formData.symptoms}
                         onChange={handleChange}
-                        className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
                     ></textarea>
                 </div>
 
                 {/* Treatment Section */}
-                <div className="flex items-top">
-                    <label className="w-1/4 text-gray-900">Treatment</label>
-                    <div className="w-1/4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2 items-top">
+                    <label className="text-gray-900">Treatment</label>
+                    <div className="">
                         <input
                             type="checkbox"
                             name="treatmentChemical"
@@ -191,7 +192,7 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
                         <label className="text-gray-900 ml-2">Chemical</label>
                     </div>
                     {formData.treatmentChemical && (
-                        <div className="w-1/4">
+                        <div className="">
                             {["Chlorine", "Formaline", "Iodine", "KMNO4"].map((chemical) => (
                                 <div key={chemical}>
                                     <input
@@ -205,10 +206,7 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
                             ))}
                         </div>
                     )}
-                </div>
-                <div className="flex items-center">
-                    <label className="w-1/4 text-gray-900"></label>
-                    <div className="w-1/4">
+                    <div className="col-start-1 md:col-start-2">
                         <input
                             type="checkbox"
                             name="treatmentPhysical"
@@ -222,10 +220,10 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
 
             {/* Buttons */}
             <div className="flex justify-end mt-6 space-x-4">
-                <button onClick={onCancel} className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                <button onClick={onCancel} className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
                     Clear
                 </button>
-                <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+                <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
                     Save
                 </button>
             </div>
