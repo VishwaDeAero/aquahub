@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 const icons = [
     { id: 1, name: "Broodstock Management", src: "/img/menu-icons/BroodstockManagementIcon.png", path: "/broodstock-management" },
@@ -17,7 +17,23 @@ const icons = [
 
 const IconNavigation = ({ onSelect }) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [selectedId, setSelectedId] = useState(1); // Default: Broodstock
+
+    const scrollContainerRef = useRef(null);
+    const itemRefs = useRef({}); // Stores refs for each icon
+
+    // Scroll to active icon when the route changes
+    useEffect(() => {
+        const activeItem = icons.find((item) => item.path === location.pathname);
+        if (activeItem && itemRefs.current[activeItem.id]) {
+            itemRefs.current[activeItem.id].scrollIntoView({
+                behavior: "smooth",
+                inline: "center", // Centers the active item in the scroll view
+                block: "nearest"
+            });
+        }
+    }, [location.pathname]);
 
     const handleSelect = (item) => {
         setSelectedId(item.id);
@@ -26,20 +42,21 @@ const IconNavigation = ({ onSelect }) => {
     };
 
     return (
-        <div className="w-full overflow-x-auto whitespace-nowrap py-2">
+        <div ref={scrollContainerRef} className="w-full overflow-x-auto whitespace-nowrap py-2 scroll-smooth">
             <div className="flex space-x-2 md:space-x-4">
                 {icons.map((item) => (
                     <NavLink
                         key={item.id}
                         to={item.path}
+                        ref={(el) => (itemRefs.current[item.id] = el)}
                         className={({ isActive }) =>
-                            `p-2 md:p-3 rounded-md flex-shrink-0 md:[flex-shrink:1] transition-opacity ${isActive ? "opacity-100 bg-gray-200" : "opacity-50 hover:opacity-80"
+                            `p-2 md:p-3 rounded-md flex-shrink-0 md:[flex-shrink:1] transition-opacity ${
+                                isActive ? "opacity-100 bg-gray-200" : "opacity-50 hover:opacity-80"
                             }`
                         }
                     >
                         <img src={item.src} alt={item.name} className="h-auto w-12 md:w-full" />
                     </NavLink>
-
                 ))}
             </div>
         </div>
