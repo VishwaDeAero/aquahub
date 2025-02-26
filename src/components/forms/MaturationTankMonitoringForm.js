@@ -56,13 +56,13 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
       {/* Form */}
       <div className="grid grid-cols-1 gap-6 mb-10">
         {/* Broodstock Dropdown */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Broodstock</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Broodstock</label>
           <select
             name="broodstock"
             value={formData.broodstock}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           >
             <option value="">Select Broodstock</option>
             <option value="Type1">Type 1</option>
@@ -72,21 +72,21 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         </div>
 
         {/* Number of Broodstock */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number of Broodstock</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number of Broodstock</label>
           <input
             type="number"
             name="numberOfBroodstock"
             value={formData.numberOfBroodstock}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Number of Male & Female */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number of</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number of</label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Male</label>
             <input
               type="number"
@@ -107,57 +107,57 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         </div>
 
         {/* Stock Date */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Stock Date</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Stock Date</label>
           <input
             type="date"
             name="stockDate"
             value={formData.stockDate}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Area */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Area</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Area</label>
           <input
             type="text"
             name="area"
             value={formData.area}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Feed Time */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Feed Time</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Feed Time</label>
           <input
             type="time"
             name="feedTime"
             value={formData.feedTime}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Date */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Date</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Date</label>
           <input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Number of Male & Female */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number of</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number of</label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Male</label>
             <input
               type="number"
@@ -178,9 +178,9 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         </div>
 
         {/* Feed Section */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Feed</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Feed</label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Squid(g)</label>
             <input
               type="number"
@@ -199,9 +199,9 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
             />
           </div>
         </div>
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900"></label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900"></label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Worm(g)</label>
             <input
               type="number"
@@ -222,33 +222,33 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         </div>
 
         {/* Number Of Spawner collect */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number Of Spawner Collect</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number Of Spawner Collect</label>
           <input
             type="number"
             name="numberOfSpawnerCollect"
             value={formData.numberOfSpawnerCollect}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Number Of Spawn */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number Of Spawn</label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number Of Spawn</label>
           <input
             type="number"
             name="numberOfSpawn"
             value={formData.numberOfSpawn}
             onChange={handleChange}
-            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
           />
         </div>
 
         {/* Water Change Time */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Water Change Time</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Water Change Time</label>
+          <div className="flex items-center">
             <label className="w-1/4 text-gray-900 text-center">Morning</label>
             <input
               type="time"
@@ -269,9 +269,9 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         </div>
 
         {/* Number Of Molt */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number Of Molt</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number Of Molt</label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Male</label>
             <input
               type="number"
@@ -292,9 +292,9 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         </div>
 
         {/* Number Of Mortality */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Number Of Mortality</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Number Of Mortality</label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Male</label>
             <input
               type="number"
@@ -318,24 +318,24 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
         {[
           { label: "PH", name: "phNumber" },
           { label: "Salinity", name: "salinity" },
-          { label: "Temperature (C)", name: "temperature" },
+          { label: "Temperature °C", name: "temperature" },
         ].map(({ label, name }) => (
-          <div key={name} className="flex items-center">
-            <label className="w-1/3 text-gray-900">{label}</label>
+          <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="text-gray-900">{label}</label>
             <input
               type="text"
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+              className="p-2 border border-gray-300 bg-slate-100 rounded-md"
             />
           </div>
         ))}
 
         {/* Vibrio Count */}
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900">Vibrio Count</label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900">Vibrio Count</label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Large Y</label>
             <input
               type="number"
@@ -354,9 +354,9 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
             />
           </div>
         </div>
-        <div className="flex items-center">
-          <label className="w-1/3 text-gray-900"></label>
-          <div className="w-1/3 flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+          <label className="text-gray-900"></label>
+          <div className="flex items-center">
             <label className="w-2/6 text-gray-900 text-center">Green</label>
             <input
               type="number"
@@ -383,17 +383,17 @@ function MaturationTankMonitoringForm({ initialData = {}, onSubmit, onCancel }) 
             name="remarks"
             value={formData.remarks}
             onChange={handleChange}
-            className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+            className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
           ></textarea>
         </div>
       </div>
 
       {/* Buttons */}
       <div className="flex justify-end mt-6 space-x-4">
-        <button onClick={onCancel} className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+        <button onClick={onCancel} className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
           Clear
         </button>
-        <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+        <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
           Save
         </button>
       </div>
