@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import mainLogoLight from '../assets/img/main-logo-light.png';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
@@ -23,7 +24,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             >
                 <div>
                     <div className="p-6 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold">AquaHub</h1>
+                        {/* <h1 className="text-2xl font-bold">AquaHub</h1> */}
+                        <img className="w-2/3" src={mainLogoLight}/>
                         <button className="md:hidden text-white text-2xl" onClick={toggleSidebar}>
                             <i className="fa fa-times" aria-hidden="true"></i>
                         </button>
