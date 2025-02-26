@@ -27,17 +27,17 @@ const IconNavigation = ({ onSelect }) => {
 
     return (
         <div className="w-full overflow-x-auto whitespace-nowrap py-2">
-            <div className="flex space-x-4">
+            <div className="flex space-x-2 md:space-x-4">
                 {icons.map((item) => (
                     <NavLink
                         key={item.id}
                         to={item.path}
                         className={({ isActive }) =>
-                            `p-3 rounded-md transition-opacity ${isActive ? "opacity-100 bg-gray-200" : "opacity-50 hover:opacity-80"
+                            `p-2 md:p-3 rounded-md flex-shrink-0 md:[flex-shrink:1] transition-opacity ${isActive ? "opacity-100 bg-gray-200" : "opacity-50 hover:opacity-80"
                             }`
                         }
                     >
-                        <img src={item.src} alt={item.name} className="h-auto w-full" />
+                        <img src={item.src} alt={item.name} className="h-auto w-12 md:w-full" />
                     </NavLink>
 
                 ))}
