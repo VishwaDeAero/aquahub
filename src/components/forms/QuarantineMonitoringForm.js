@@ -47,13 +47,13 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
             {/* Form */}
             <div className="grid grid-cols-1 gap-6 mb-10">
                 {/* Broodstock Dropdown */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Broodstock</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Broodstock</label>
                     <select
                         name="broodstock"
                         value={formData.broodstock}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     >
                         <option value="">Select Broodstock</option>
                         <option value="Type1">Type 1</option>
@@ -63,14 +63,14 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 {/* Date Picker */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Date</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Date</label>
                     <input
                         type="date"
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
@@ -79,22 +79,22 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                     { label: "Area", name: "area" },
                     { label: "Sample Number", name: "sampleNumber" },
                 ].map(({ label, name }) => (
-                    <div key={name} className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type="text"
                             name={name}
                             value={formData[name]}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
 
                 {/* Number of Male & Female */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Number of</label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Number of</label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Male</label>
                         <input
                             type="number"
@@ -115,9 +115,9 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 {/* Feed Section */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Feed</label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Feed</label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Squid</label>
                         <input
                             type="number"
@@ -138,9 +138,9 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 {/* Number of Mortality */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Number of Mortality</label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Number of Mortality</label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Male</label>
                         <input
                             type="number"
@@ -161,9 +161,9 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 {/* Number of Moult */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Number of Moult</label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Number of Moult</label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Male</label>
                         <input
                             type="number"
@@ -184,9 +184,9 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                 </div>
 
                 {/* Water Change Time */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Water Change Time</label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Water Change Time</label>
+                    <div className="flex items-center">
                         <label className="w-1/4 text-gray-900 text-center">Morning</label>
                         <input
                             type="time"
@@ -214,14 +214,14 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                     { label: "Salinity", name: "salinity" },
                     { label: "Temperature (C)", name: "temperature" },
                 ].map(({ label, name }) => (
-                    <div key={name} className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type="text"
                             name={name}
                             value={formData[name]}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
@@ -233,17 +233,17 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
                         name="remarks"
                         value={formData.remarks}
                         onChange={handleChange}
-                        className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
                     ></textarea>
                 </div>
             </div>
 
             {/* Buttons */}
             <div className="flex justify-end mt-6 space-x-4">
-                <button className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                <button className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
                     Clear
                 </button>
-                <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+                <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
                     Save
                 </button>
             </div>
