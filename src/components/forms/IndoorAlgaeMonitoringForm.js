@@ -61,22 +61,22 @@ function IndoorAlgaeMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     { label: "Salinity", name: "salinity", type: "number" },
                     { label: "Temperature °C", name: "temperature", type: "number" },
                 ].map(({ label, name, type }) => (
-                    <div key={name} className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type={type}
                             name={name}
                             value={formData}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
 
                 {/* Capacity Fields */}
-                <div className="flex items-center mt-4">
-                    <label className="w-1/3 text-gray-900"></label>
-                    <div className="w-1/3 flex justify-around gap-6 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center mt-4">
+                    <label className="text-gray-900"></label>
+                    <div className="flex justify-around gap-6 items-center">
                         <label className="text-gray-900">Prepare</label>
                         <label className="text-gray-900">Discarded</label>
 
@@ -91,9 +91,9 @@ function IndoorAlgaeMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     "5L",
                     "20L"
                 ].map((label) => (
-                    <div className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
-                        <div className="w-1/3 flex justify-around gap-6 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-center md:text-left text-gray-900">{label}</label>
+                        <div className="flex justify-around gap-6 items-center">
                             <input
                                 type="number"
                                 name={`prepare${label.replace(/ /g, "")}`}
@@ -119,22 +119,22 @@ function IndoorAlgaeMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     { label: "Ciliate", name: "ciliate", type: "text" },
                     { label: "Plate Preparation", name: "platePreparation", type: "text" },
                 ].map(({ label, name, type }) => (
-                    <div key={name} className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type={type}
                             name={name}
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
 
                 {/* Vibrio Count */}
-                <div className="flex items-center mt-4">
-                    <label className="w-1/3 text-gray-900">Vibrio Count</label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center mt-4">
+                    <label className="text-gray-900">Vibrio Count</label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Large Y</label>
                         <input
                             type="number"
@@ -153,9 +153,9 @@ function IndoorAlgaeMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                         />
                     </div>
                 </div>
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900"></label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900"></label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Green</label>
                         <input
                             type="number"
@@ -182,17 +182,17 @@ function IndoorAlgaeMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                         name="remarks"
                         value={formData.remarks}
                         onChange={handleChange}
-                        className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+                        className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
                     ></textarea>
                 </div>
             </div>
 
             {/* Buttons */}
             <div className="flex justify-end mt-6 space-x-4">
-                <button onClick={onCancel} className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                <button onClick={onCancel} className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
                     Clear
                 </button>
-                <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+                <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
                     Save
                 </button>
             </div>

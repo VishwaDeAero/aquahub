@@ -64,14 +64,14 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           { label: "Batch Reference No", name: "batchReferenceNo", type: "text" },
           { label: "Tank No", name: "tankNo", type: "text" },
         ].map(({ label, name, type }) => (
-          <div key={name} className="flex items-center">
-            <label className="w-1/3 text-gray-900">{label}</label>
+          <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="text-gray-900">{label}</label>
             <input
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+              className="p-2 border border-gray-300 bg-slate-100 rounded-md"
             />
           </div>
         ))}
@@ -83,14 +83,14 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
         <div className="grid grid-cols-1 gap-6">
           {formData.waterQualityBroodstock.map((label, index) => (
             <div key={index} className="flex items-center">
-              <label className="pl-32 w-1/3 text-sky-700">{label}</label>
-              <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+              <label className="pl-4 md:pl-32 w-1/3 text-sky-700">{label}</label>
+              <input type="text" className="w-2/3 md:w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
             </div>
           ))}
         </div>
-        <div className="w-2/3 flex justify-end mt-4">
+        <div className="w-full md:w-2/3 flex justify-end mt-4">
           <button onClick={() => handleAddWaterQuality("waterQualityBroodstock")} className="py-2 px-4 text-sky-900 items-center rounded-lg border-2 border-sky-900">
-            Add More <i class="fa-solid fa-plus"></i>
+            Add More <i className="fa-solid fa-plus"></i>
           </button>
         </div>
       </div>
@@ -106,14 +106,14 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           { label: "Issued Hatchery Name", name: "issuedHatcheryName", type: "text" },
           { label: "Stock Tank No", name: "stockTankNo", type: "text" },
         ].map(({ label, name, type }) => (
-          <div key={name} className="flex items-center">
-            <label className="w-1/3 text-gray-900">{label}</label>
+          <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="text-gray-900">{label}</label>
             <input
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+              className="p-2 border border-gray-300 bg-slate-100 rounded-md"
             />
           </div>
         ))}
@@ -125,14 +125,14 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
         <div className="grid grid-cols-1 gap-6">
           {formData.waterQualityNauplia.map((label, index) => (
             <div key={index} className="flex items-center">
-              <label className="pl-32 w-1/3 text-sky-700">{label}</label>
-              <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+              <label className="pl-4 md:pl-32 w-1/3 text-sky-700">{label}</label>
+              <input type="text" className="w-2/3 md:w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
             </div>
           ))}
         </div>
-        <div className="w-2/3 flex justify-end mt-4">
+        <div className="w-full md:w-2/3 flex justify-end mt-4">
           <button onClick={() => handleAddWaterQuality("waterQualityNauplia")} className="py-2 px-4 text-sky-900 items-center rounded-lg border-2 border-sky-900">
-            Add More <i class="fa-solid fa-plus"></i>
+            Add More <i className="fa-solid fa-plus"></i>
           </button>
         </div>
       </div>
@@ -140,13 +140,13 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
       <h6 className="text-lg font-semibold text-sky-900 mb-4">Algae Culturing Method in Nursery Hatchery :</h6>
       <div className="mb-10">
         <div className="grid grid-cols-1 gap-6">
-          <div className="flex items-center">
-            <label className="w-1/3 text-right font-semibold px-4">Indoor</label>
-            <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="md:text-right font-semibold px-4">Indoor</label>
+            <input type="text" className="p-2 border border-gray-300 bg-slate-100 rounded-md" />
           </div>
-          <div className="flex items-center">
-            <label className="w-1/3 text-right font-semibold px-4">Outdoor</label>
-            <input type="text" className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="md:text-right font-semibold px-4">Outdoor</label>
+            <input type="text" className="p-2 border border-gray-300 bg-slate-100 rounded-md" />
           </div>
         </div>
       </div>
@@ -158,17 +158,17 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           name="remarks"
           value={formData.remarks}
           onChange={handleChange}
-          className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+          className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
         ></textarea>
       </div>
 
       {/* Save & Clear Buttons */}
       <div className="flex justify-end mt-6 space-x-4">
         <button
-          onClick={onCancel} className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+          onClick={onCancel} className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
           Clear
         </button>
-        <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+        <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
           Save
         </button>
       </div>

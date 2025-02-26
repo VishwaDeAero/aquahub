@@ -39,13 +39,13 @@ function SpawningMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
             {/* Form */}
             <div className="grid grid-cols-1 gap-6 mb-10">
                 {/* Broodstock Dropdown */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Broodstock</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Broodstock</label>
                     <select
                         name="broodstock"
                         value={formData.broodstock}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     >
                         <option value="">Select Broodstock</option>
                         <option value="Type1">Type 1</option>
@@ -55,33 +55,33 @@ function SpawningMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                 </div>
 
                 {/* Date Picker */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Date</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Date</label>
                     <input
                         type="date"
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
                 {/* Tank Number */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Tank Number</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Tank Number</label>
                     <input
                         type="number"
                         name="tankNumber"
                         value={formData.tankNumber}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
                 {/* Maturation & Wild Fields (Both as Number Inputs) */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900"></label>
-                    <div className="w-1/3 flex items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900"></label>
+                    <div className="flex items-center">
                         <label className="w-2/6 text-gray-900 text-center">Maturation</label>
                         <input
                             type="number"
@@ -102,26 +102,26 @@ function SpawningMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                 </div>
 
                 {/* Number of Spawner */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Number of Spawner</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Number of Spawner</label>
                     <input
                         type="number"
                         name="numberOfSpawner"
                         value={formData.numberOfSpawner}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
                 {/* Number of Spawn */}
-                <div className="flex items-center">
-                    <label className="w-1/3 text-gray-900">Number of Spawn</label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                    <label className="text-gray-900">Number of Spawn</label>
                     <input
                         type="number"
                         name="numberOfSpawn"
                         value={formData.numberOfSpawn}
                         onChange={handleChange}
-                        className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                        className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                     />
                 </div>
 
@@ -132,14 +132,14 @@ function SpawningMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     { label: "Salinity", name: "salinity" },
                     { label: "Temperature °C", name: "temperature" },
                 ].map(({ label, name }) => (
-                    <div key={name} className="flex items-center">
-                        <label className="w-1/3 text-gray-900">{label}</label>
+                    <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                        <label className="text-gray-900">{label}</label>
                         <input
                             type="text"
                             name={name}
                             value={formData[name]}
                             onChange={handleChange}
-                            className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+                            className="p-2 border border-gray-300 bg-slate-100 rounded-md"
                         />
                     </div>
                 ))}
@@ -152,16 +152,16 @@ function SpawningMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                     name="remarks"
                     value={formData.remarks}
                     onChange={handleChange}
-                    className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+                    className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
                 ></textarea>
             </div>
 
             {/* Buttons */}
             <div className="flex justify-end mt-6 space-x-4">
-                <button onClick={onCancel} className="px-4 py-2 w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                <button onClick={onCancel} className="px-4 py-2 w-full md:w-32 border border-sky-900 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
                     Clear
                 </button>
-                <button onClick={handleSubmit} className="px-4 py-2 w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
+                <button onClick={handleSubmit} className="px-4 py-2 w-full md:w-32 bg-sky-900 text-white rounded-lg hover:bg-blue-900">
                     Save
                 </button>
             </div>
