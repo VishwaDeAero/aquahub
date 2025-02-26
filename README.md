@@ -1,5 +1,10 @@
 ## Live Web Preview
+[Live Preview](http://project-aquahub.netlify.app/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/85d0a247-5c43-4e42-b713-3905d16624eb/deploy-status)](https://app.netlify.com/sites/project-aquahub/deploys)
+
+## 📊 Project Stats
+
+![Lines of Code](https://img.shields.io/tokei/lines/github/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME)
 
 ## UI Design
 
