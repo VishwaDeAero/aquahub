@@ -99,14 +99,14 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           { label: "Batch Reference No", name: "batchReferenceNo", type: "text" },
           { label: "Tank No", name: "tankNo", type: "text" },
         ].map(({ label, name, type }) => (
-          <div key={name} className="flex items-center">
-            <label className="w-1/3 text-gray-900">{label}</label>
+          <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="text-gray-900">{label}</label>
             <input
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+              className="p-2 border border-gray-300 bg-slate-100 rounded-md"
             />
           </div>
         ))}
@@ -149,14 +149,14 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           { label: "Issued Hatchery Name", name: "issuedHatcheryName", type: "text" },
           { label: "Stock Tank No", name: "stockTankNo", type: "text" },
         ].map(({ label, name, type }) => (
-          <div key={name} className="flex items-center">
-            <label className="w-1/3 text-gray-900">{label}</label>
+          <div key={name} className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <label className="text-gray-900">{label}</label>
             <input
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md"
+              className="p-2 border border-gray-300 bg-slate-100 rounded-md"
             />
           </div>
         ))}
@@ -212,7 +212,7 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           name="remarks"
           value={formData.remarks}
           onChange={handleChange}
-          className="w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
+          className="w-full md:w-2/3 p-2 border border-gray-300 bg-slate-100 rounded-md h-24 mt-2"
         ></textarea>
       </div>
 
