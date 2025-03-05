@@ -1,26 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppLayout from "../components/layouts/AppLayout";
 import { Link } from "react-router-dom";
 import ChangePasswordModal from "../components/modals/ConfirmPasswordModal";
+import axios from "axios"; // Import axios for API calls
 
 const ProfileDetails = () => {
-    // State to manage edit mode
     const [isEditable, setIsEditable] = useState(false);
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
-
-    // Mock user data
     const [user, setUser] = useState({
-        title: "Manager",
-        firstName: "Lakshan",
-        lastName: "Heena",
-        phoneNumber: "+94 71 12 34 567",
-        email: "lakshanheena1@gmail.com",
+        _id: "", // Add _id for updates
+        title: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        email: "",
     });
+
+    // Fetch user profile data
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const token = localStorage.getItem("authToken"); // Get the token from local storage
+                const response = await axios.get("http://localhost:5001/api/auth/me", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setUser(response.data); // Set the fetched user data
+            } catch (error) {
+                console.error("Error fetching profile:", error);
+                alert("Failed to fetch profile. Please try again.");
+            }
+        };
+
+        fetchProfile();
+    }, []);
 
     // Toggle edit mode
     const toggleEditMode = () => setIsEditable((prev) => !prev);
+
+    // Handle saving updated profile
+    const handleSave = async (e) => {
+        e.preventDefault();
+        try {
+            const token = localStorage.getItem("authToken");
+            const response = await axios.put(
+                `http://localhost:5001/api/users/${user._id}`, // Use the user's ID
+                user, // Send the updated user data
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("Profile updated successfully:", response.data);
+            setIsEditable(false); // Exit edit mode
+            alert("Profile updated successfully!");
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            alert("Failed to update profile. Please try again.");
+        }
+    };
 
     return (
         <AppLayout title="My Profile">
@@ -103,7 +145,7 @@ const ProfileDetails = () => {
                             {isEditable && (
                                 <div className="flex space-x-4 w-full md:w-2/5 mb-6">
                                     <button type="button" onClick={toggleEditMode} className="px-4 py-2 w-full bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
-                                    <button type="submit" className="px-4 py-2 w-full bg-sky-900 text-white rounded-lg hover:bg-blue-600">Save</button>
+                                    <button type="submit" onClick={handleSave} className="px-4 py-2 w-full bg-sky-900 text-white rounded-lg hover:bg-blue-600">Save</button>
                                 </div>
                             )}
 
@@ -124,7 +166,7 @@ const ProfileDetails = () => {
                     </div>
                 </div>
             </div>
-            <ChangePasswordModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+            <ChangePasswordModal isOpen={modalOpen} onClose={() => setModalOpen(false)} email={user.email} />
         </AppLayout>
     );
 };

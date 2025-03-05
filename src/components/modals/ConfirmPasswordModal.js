@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import mainBlueLogo from "../../assets/img/main-logo-blue.png";
+import axios from "axios";
 
-const ChangePasswordModal = ({ isOpen, onClose }) => {
+const ChangePasswordModal = ({ isOpen, onClose, email }) => {
     const [step, setStep] = useState(1);
     const [selectedMethod, setSelectedMethod] = useState("");
-    const [verificationCode, setVerificationCode] = useState(["", "", "", "", "", ""]);
+    const [verificationCode, setVerificationCode] = useState(["", "", "", "", ""]);
     const inputRefs = useRef([]);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -20,13 +21,21 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
     };
 
     // Validate and move to next step
-    const handleSendCode = () => {
+    const handleSendCode = async () => {
         if (!selectedMethod) {
             setError("Please select a verification method.");
             return;
         }
-        setStep(2);
-        startResendTimer();
+
+        try {
+            // Send verification code to email
+            await axios.post("http://localhost:5001/api/auth/send-verification-code", { email });
+            setStep(2);
+            startResendTimer();
+        } catch (error) {
+            console.error("Error sending verification code:", error);
+            setError("Failed to send verification code. Please try again.");
+        }
     };
 
     // Start timer for resend code
@@ -69,13 +78,12 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
     // Resend code functionality
     const handleResendCode = () => {
         if (canResend) {
-            alert("Verification code has been resent!");
-            startResendTimer();
+            handleSendCode();
         }
     };
 
     // Validate submission
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (verificationCode.some((num) => num === "")) {
             setError("Please enter the complete verification code.");
             return;
@@ -88,8 +96,28 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
             setError("Passwords do not match.");
             return;
         }
-        alert("Password successfully changed!");
-        onClose();
+
+        try {
+            const code = verificationCode.join(""); // Combine the code into a single string
+
+            // Step 1: Verify the code
+            const verifyResponse = await axios.post("http://localhost:5001/api/auth/verify-code", {
+                email,
+                code,
+            });
+
+            // Step 2: Reset the password
+            await axios.post("http://localhost:5001/api/auth/reset-password", {
+                token: verifyResponse.data.resetToken, // Use the token from the verification response
+                password: newPassword,
+            });
+
+            alert("Password successfully changed!");
+            onClose();
+        } catch (error) {
+            console.error("Error changing password:", error);
+            setError("Failed to change password. Please try again.");
+        }
     };
 
     // Handle password visibility toggle
@@ -136,7 +164,7 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
                                 className="form-radio h-4 w-4 text-sky-900"
                                 readOnly
                             />
-                            <span className="text-gray-900">l*********1@gmail.com</span>
+                            <span className="text-gray-900">{email}</span>
                         </div>
                         {error && <p className="text-red-700 text-sm mt-2">{error}</p>}
 

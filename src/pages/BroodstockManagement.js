@@ -3,16 +3,26 @@ import AppLayout from "../components/layouts/AppLayout";
 import IconNavigation from "../components/IconNavigation";
 import BroodstockManagementForm from "../components/forms/BroodstockManagementForm";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const BroodstockManagement = () => {
     const navigate = useNavigate();
 
     // Function to handle form submission (for adding new Broodstock)
-    const handleSave = (formData) => {
-        console.log("New Broodstock Data:", formData);
-        // Redirect to the Broodstock Management View
-        navigate("/broodstock-management/view");
-    };
+    const handleSave = async (formData) => {
+        try {
+          const token = localStorage.getItem("authToken");
+          await axios.post("http://localhost:5001/api/broodstocks", formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          navigate("/broodstock-management/view");
+        } catch (error) {
+          console.error("Error saving broodstock:", error);
+          alert("Failed to save broodstock");
+        }
+      };
 
     return (
         <AppLayout title="Broodstock Management">
