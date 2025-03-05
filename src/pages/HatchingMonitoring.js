@@ -3,16 +3,24 @@ import AppLayout from "../components/layouts/AppLayout";
 import IconNavigation from "../components/IconNavigation";
 import { useNavigate } from "react-router-dom";
 import HatchingMonitoringForm from "../components/forms/HatchingMonitoringForm";
+import axios from "axios";
 
 const HatchingMonitoring = () => {
     const navigate = useNavigate();
 
     // Function to handle form submission (for adding new Hatching)
-    const handleSave = (formData) => {
-        console.log("New Hatching Data:", formData);
-        // Redirect to the Hatching Monitoring View
-        navigate("/hatching-monitoring/view");
-    };
+    const handleSave = async (formData) => {
+        try {
+          const token = localStorage.getItem("authToken");
+          await axios.post("http://localhost:5001/api/hatchings", formData, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          navigate("/hatching-monitoring/view");
+        } catch (error) {
+          console.error("Save error:", error);
+          alert("Error saving record");
+        }
+      };
 
     return (
         <AppLayout title="Hatching Monitoring">

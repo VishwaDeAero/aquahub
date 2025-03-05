@@ -37,9 +37,25 @@ function QuarantineMonitoringForm({ initialData, onSubmit, onCancel }) {
     };
 
     // Hande Submit
-    const handleSubmit = () => {
-        onSubmit(formData);
+    // Add proper form submission handling
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const formattedData = {
+      ...formData,
+      maleCount: Number(formData.maleCount),
+      femaleCount: Number(formData.femaleCount),
+      feedSquid: Number(formData.feedSquid),
+      feedLiver: Number(formData.feedLiver),
+      mortalityMale: Number(formData.mortalityMale),
+      mortalityFemale: Number(formData.mortalityFemale),
+      moultMale: Number(formData.moultMale),
+      moultFemale: Number(formData.moultFemale),
+      ph: Number(formData.ph),
+      salinity: Number(formData.salinity),
+      temperature: Number(formData.temperature)
     };
+    onSubmit(formattedData);
+  };
 
     return (
         <>

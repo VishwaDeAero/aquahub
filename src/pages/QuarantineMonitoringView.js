@@ -1,123 +1,183 @@
-import React, { useState } from 'react'
-import QuarantineMonitoringForm from '../components/forms/QuarantineMonitoringForm'
-import AppLayout from '../components/layouts/AppLayout';
-import IconNavigation from '../components/IconNavigation';
-import FormModal from '../components/modals/FormModal';
-import ConfirmationModal from '../components/modals/ConfirmationModal';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import QuarantineMonitoringForm from "../components/forms/QuarantineMonitoringForm";
+import AppLayout from "../components/layouts/AppLayout";
+import IconNavigation from "../components/IconNavigation";
+import FormModal from "../components/modals/FormModal";
+import ConfirmationModal from "../components/modals/ConfirmationModal";
+import { format } from "date-fns";
 
 function QuarantineMonitoringView() {
-    const [quarantineData, setQuarantineData] = useState([
-        { id: 1, date: "11.09.2023", sampleNumber: "01", area: "Puttalama", broodstock: "Stock A" },
-        { id: 2, date: "12.09.2023", sampleNumber: "02", area: "Chilaw", broodstock: "Stock B" },
-        { id: 3, date: "13.09.2023", sampleNumber: "03", area: "Negombo", broodstock: "Stock C" },
-    ]);
+  const [quarantineData, setQuarantineData] = useState([]);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [selectedQuarantine, setSelectedQuarantine] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedQuarantine, setSelectedQuarantine] = useState(null);
 
-    // Open Edit Modal
-    const handleEdit = (quarantine) => {
-        setSelectedQuarantine(quarantine);
-        setIsModalOpen(true);
+  // Open Edit Modal
+  const handleEdit = (quarantine) => {
+    setSelectedQuarantine(quarantine);
+    setIsModalOpen(true);
+  };
+
+  // Open Delete Confirmation Modal
+  const handleDelete = (id) => {
+    setSelectedQuarantine(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  // Enhanced fetch function
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(
+          "http://localhost:5001/api/quarantines",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        setQuarantineData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
+    fetchData();
+  }, []);
 
-    // Open Delete Confirmation Modal
-    const handleDelete = (id) => {
-        setSelectedQuarantine(id);
-        setIsDeleteModalOpen(true);
-    };
-
-    // Confirm Delete
-    const confirmDelete = () => {
-        setQuarantineData(quarantineData.filter((item) => item.id !== selectedQuarantine));
-        setIsDeleteModalOpen(false);
-    };
-
-    // Save (for both Create & Edit)
-    const handleSave = (updatedQuarantine) => {
-        if (selectedQuarantine) {
-            // Update existing
-            setQuarantineData((prev) =>
-                prev.map((item) => (item.id === updatedQuarantine.id ? updatedQuarantine : item))
-            );
-        } else {
-            // Add new
-            setQuarantineData((prev) => [...prev, { id: prev.length + 1, ...updatedQuarantine }]);
+  // Enhanced delete handler
+  const confirmDelete = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      await axios.delete(
+        `http://localhost:5001/api/quarantines/${selectedQuarantine}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
         }
-        setIsModalOpen(false);
-    };
-    return (
-        <AppLayout title="Quarantine Monitoring">
-            {/* Scrollable Icon Navigation */}
-            <IconNavigation onSelect={() => { }} />
+      );
+      setQuarantineData((prev) =>
+        prev.filter((item) => item._id !== selectedQuarantine)
+      );
+      setIsDeleteModalOpen(false);
+    } catch (error) {
+      console.error("Delete error:", error);
+    }
+  };
 
-            <div className="p-6 border rounded-md bg-white shadow-sm">
-                {/* User Table */}
-                <div className="bg-white shadow-md rounded-lg overflow-auto">
-                    <table className="w-full table-auto border-collapse">
-                        <thead>
-                            <tr className="bg-gray-200">
-                                <th className="px-4 py-2">
-                                </th>
-                                <th className="px-4 py-2 text-left">Date</th>
-                                <th className="px-4 py-2 text-left">Broodstock</th>
-                                <th className="px-4 py-2 text-left">Area</th>
-                                <th className="px-4 py-2 text-left">Sample Number</th>
-                                <th className="px-4 py-2 text-center">View</th>
-                                <th className="px-4 py-2 text-center">Delete</th>
-                                <th className="px-4 py-2 text-center">Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {quarantineData.map((item, index) => (
-                                <tr key={item.id} className={`border-b ${index % 2 === 0 ? "bg-gray-100" : ""}`}>
-                                    <td className="px-4 py-2">
-                                        <input type="checkbox" />
-                                    </td>
-                                    <td className="px-4 py-2">{item.date}</td>
-                                    <td className="px-4 py-2">{item.broodstock}</td>
-                                    <td className="px-4 py-2">{item.area}</td>
-                                    <td className="px-4 py-2">{item.sampleNumber}</td>
-                                    <td className="px-4 py-2 text-center">
-                                        <button className="text-yellow-500 text-lg">
-                                            <i className="fas fa-eye mr-1"></i>
-                                        </button>
-                                    </td>
-                                    <td className="px-4 py-2 text-center">
-                                        <button onClick={() => handleDelete(item.id)} className="text-red-500 text-lg">
-                                            <i className="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                    <td className="px-4 py-2 text-center">
-                                        <button onClick={() => handleEdit(item)} className="text-blue-500 text-lg">
-                                            <i className="fas fa-pen"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+  // Enhanced save handler
+  const handleSave = async (data) => {
+    try {
+      const token = localStorage.getItem("authToken");
+      if (selectedQuarantine?._id) {
+        await axios.put(
+          `http://localhost:5001/api/quarantines/${selectedQuarantine._id}`,
+          data,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } else {
+        await axios.post("http://localhost:5001/api/quarantines", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+      const response = await axios.get(
+        "http://localhost:5001/api/quarantines",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setQuarantineData(response.data);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Save error:", error);
+    }
+  };
+  return (
+    <AppLayout title="Quarantine Monitoring">
+      {/* Scrollable Icon Navigation */}
+      <IconNavigation onSelect={() => {}} />
 
-                {/* Edit Modal */}
-                <FormModal
-                    isOpen={isModalOpen}
-                    title="Edit Quarantine"
-                    form={<QuarantineMonitoringForm initialData={selectedQuarantine} onSubmit={handleSave} onCancel={() => setIsModalOpen(false)} />}
-                    onClose={() => setIsModalOpen(false)}
-                />
+      <div className="p-6 border rounded-md bg-white shadow-sm">
+        {/* User Table */}
+        <div className="bg-white shadow-md rounded-lg overflow-auto">
+          <table className="w-full table-auto border-collapse">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="px-4 py-2"></th>
+                <th className="px-4 py-2 text-left">Date</th>
+                <th className="px-4 py-2 text-left">Broodstock</th>
+                <th className="px-4 py-2 text-left">Area</th>
+                <th className="px-4 py-2 text-left">Sample Number</th>
+                <th className="px-4 py-2 text-center">View</th>
+                <th className="px-4 py-2 text-center">Delete</th>
+                <th className="px-4 py-2 text-center">Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              {quarantineData.map((item, index) => (
+                <tr
+                  key={item.id}
+                  className={`border-b ${index % 2 === 0 ? "bg-gray-100" : ""}`}
+                >
+                  <td className="px-4 py-2">
+                    <input type="checkbox" />
+                  </td>
+                  <td className="px-4 py-2">
+                    {format(new Date(item.date), "MM/dd/yyyy")}
+                  </td>
+                  <td className="px-4 py-2">{item.broodstock}</td>
+                  <td className="px-4 py-2">{item.area}</td>
+                  <td className="px-4 py-2">{item.sampleNumber}</td>
+                  <td className="px-4 py-2 text-center">
+                    <button className="text-yellow-500 text-lg">
+                      <i className="fas fa-eye mr-1"></i>
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      className="text-red-500 text-lg"
+                    >
+                      <i className="fas fa-trash"></i>
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    <button
+                      onClick={() => handleEdit(item)}
+                      className="text-blue-500 text-lg"
+                    >
+                      <i className="fas fa-pen"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-                {/* Delete Confirmation Modal */}
-                <ConfirmationModal
-                    isOpen={isDeleteModalOpen}
-                    message="Are you sure you want to delete this entry?"
-                    onClose={() => setIsDeleteModalOpen(false)}
-                    onConfirm={confirmDelete}
-                />
-            </div>
-        </AppLayout>
-    )
+        {/* Edit Modal */}
+        <FormModal
+          isOpen={isModalOpen}
+          title="Edit Quarantine"
+          form={
+            <QuarantineMonitoringForm
+              initialData={selectedQuarantine}
+              onSubmit={handleSave}
+              onCancel={() => setIsModalOpen(false)}
+            />
+          }
+          onClose={() => setIsModalOpen(false)}
+        />
+
+        {/* Delete Confirmation Modal */}
+        <ConfirmationModal
+          isOpen={isDeleteModalOpen}
+          message="Are you sure you want to delete this entry?"
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={confirmDelete}
+        />
+      </div>
+    </AppLayout>
+  );
 }
 
-export default QuarantineMonitoringView
+export default QuarantineMonitoringView;

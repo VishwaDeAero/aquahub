@@ -28,10 +28,22 @@ function SpawningMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
         }));
     };
 
-    // Hande Submit
-    const handleSubmit = () => {
-      onSubmit(formData);
+    // Update handleSubmit to ensure number conversion
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const formattedData = {
+      ...formData,
+      tankNumber: Number(formData.tankNumber),
+      maturation: Number(formData.maturation),
+      wild: Number(formData.wild),
+      numberOfSpawner: Number(formData.numberOfSpawner),
+      numberOfSpawn: Number(formData.numberOfSpawn),
+      ph: Number(formData.ph),
+      salinity: Number(formData.salinity),
+      temperature: Number(formData.temperature)
     };
+    onSubmit(formattedData);
+  };
 
 
     return (

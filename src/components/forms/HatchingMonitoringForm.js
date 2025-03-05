@@ -1,6 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from "axios";
 
 function HatchingMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
+    const [broodstocks, setBroodstocks] = useState([]);
+    useEffect(() => {
+        const fetchBroodstocks = async () => {
+          try {
+            const token = localStorage.getItem("authToken");
+            const response = await axios.get("http://localhost:5001/api/broodstocks", {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            setBroodstocks(response.data);
+          } catch (error) {
+            console.error("Error fetching broodstocks:", error);
+          }
+        };
+        fetchBroodstocks();
+      }, []);
     const defaultValues = {
         broodstock: "",
         date: "",
@@ -22,12 +38,12 @@ function HatchingMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
 
     // Handle input changes
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type } = e.target;
         setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
+          ...prevData,
+          [name]: type === 'number' ? parseFloat(value) || '' : value,
         }));
-    };
+      };
 
     // Hande Submit
     const handleSubmit = () => {
@@ -47,12 +63,14 @@ function HatchingMonitoringForm({ initialData = {}, onSubmit, onCancel }) {
                         value={formData.broodstock}
                         onChange={handleChange}
                         className="p-2 border border-gray-300 bg-slate-100 rounded-md"
-                    >
+                        >
                         <option value="">Select Broodstock</option>
-                        <option value="Type1">Type 1</option>
-                        <option value="Type2">Type 2</option>
-                        <option value="Type3">Type 3</option>
-                    </select>
+                        {broodstocks.map(b => (
+                            <option key={b._id} value={b.batchReferenceNo - b.companyImported}>
+                            {b.batchReferenceNo} - {b.companyImported}
+                            </option>
+                        ))}
+                        </select>
                 </div>
 
                 {/* Date Picker */}

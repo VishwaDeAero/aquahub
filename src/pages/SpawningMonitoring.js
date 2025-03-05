@@ -3,16 +3,27 @@ import AppLayout from "../components/layouts/AppLayout";
 import IconNavigation from "../components/IconNavigation";
 import SpawningMonitoringForm from "../components/forms/SpawningMonitoringForm";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SpawningMonitoring = () => {
     const navigate = useNavigate();
 
     // Function to handle form submission (for adding new Spawning)
-    const handleSave = (formData) => {
-        console.log("New Spawning Data:", formData);
-        // Redirect to the Spawning Monitoring View
-        navigate("/spawning-monitoring/view");
-    };
+  // Update handleSave function
+const handleSave = async (formData) => {
+    try {
+      const token = localStorage.getItem("authToken");
+      await axios.post("http://localhost:5001/api/spawnings", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      navigate("/spawning-monitoring/view");
+    } catch (error) {
+      console.error("Error saving spawning data:", error);
+      alert("Failed to save spawning data");
+    }
+  };
 
     return (
         <AppLayout title="Spawning Monitoring">
