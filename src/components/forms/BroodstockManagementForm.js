@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import WaterQualityModal from '../modals/WaterQualityModal';
 
 function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
   const defaultValues = {
@@ -18,12 +19,28 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
     stockTankNo: "",
     algaeCulturingMethod: "Indoor",
     remarks: "",
-    waterQualityBroodstock: ["Salinity", "Ca ++", "Mg ++", "PH", "Alkalinity"],
-    waterQualityNauplia: ["Salinity", "Ca ++", "Mg ++", "PH", "Alkalinity"],
+    waterQualityBroodstock: [
+      { parameter: "Salinity", value: "" },
+      { parameter: "Ca ++", value: "" },
+      { parameter: "Mg ++", value: "" },
+      { parameter: "PH", value: "" },
+      { parameter: "Alkalinity", value: "" }
+    ],
+    waterQualityNauplia: [
+      { parameter: "Salinity", value: "" },
+      { parameter: "Ca ++", value: "" },
+      { parameter: "Mg ++", value: "" },
+      { parameter: "PH", value: "" },
+      { parameter: "Alkalinity", value: "" }
+    ],
   };
 
   // Merge default values with `initialData`
   const [formData, setFormData] = useState({ ...defaultValues, ...initialData });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newParameter, setNewParameter] = useState('');
+  const [newValue, setNewValue] = useState('');
+  const [currentSection, setCurrentSection] = useState('');
 
   // Handle input change
   const handleChange = (e) => {
@@ -35,11 +52,25 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
   };
 
   // Handle adding new water quality parameters
-  const handleAddWaterQuality = (section) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [section]: [...prevData[section], ""],
-    }));
+  const handleOpenModal = (section) => {
+    setCurrentSection(section);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setNewParameter('');
+    setNewValue('');
+  };
+
+  const handleSaveWaterQuality = () => {
+    if (newParameter.trim() && newValue.trim()) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [currentSection]: [...prevData[currentSection], { parameter: newParameter, value: newValue }],
+      }));
+      handleCloseModal();
+    }
   };
 
   // Hande Submit
@@ -81,15 +112,19 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
       <h3 className="text-lg font-bold text-blue-800 mb-4">Water Quality</h3>
       <div className="mb-10">
         <div className="grid grid-cols-1 gap-6">
-          {formData.waterQualityBroodstock.map((label, index) => (
+          {formData.waterQualityBroodstock.map((item, index) => (
             <div key={index} className="flex items-center">
-              <label className="pl-4 md:pl-32 w-1/3 text-sky-700">{label}</label>
-              <input type="text" className="w-2/3 md:w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+              <label className="w-1/3 text-sky-700">{item.parameter}</label>
+              <input type="text" value={item.value} onChange={(e) => {
+                const updatedWaterQuality = [...formData.waterQualityBroodstock];
+                updatedWaterQuality[index].value = e.target.value;
+                setFormData((prevData) => ({ ...prevData, waterQualityBroodstock: updatedWaterQuality }));
+              }} className="w-2/3 md:w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
             </div>
           ))}
         </div>
         <div className="w-full md:w-2/3 flex justify-end mt-4">
-          <button onClick={() => handleAddWaterQuality("waterQualityBroodstock")} className="py-2 px-4 text-sky-900 items-center rounded-lg border-2 border-sky-900">
+          <button onClick={() => handleOpenModal('waterQualityBroodstock')} className="py-2 px-4 text-sky-900 items-center rounded-lg border-2 border-sky-900">
             Add More <i className="fa-solid fa-plus"></i>
           </button>
         </div>
@@ -123,15 +158,19 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
       {/* Water Quality for Nauplia */}
       <div className="mb-10">
         <div className="grid grid-cols-1 gap-6">
-          {formData.waterQualityNauplia.map((label, index) => (
+          {formData.waterQualityNauplia.map((item, index) => (
             <div key={index} className="flex items-center">
-              <label className="pl-4 md:pl-32 w-1/3 text-sky-700">{label}</label>
-              <input type="text" className="w-2/3 md:w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
+              <label className="w-1/3 text-sky-700">{item.parameter}</label>
+              <input type="text" value={item.value} onChange={(e) => {
+                const updatedWaterQuality = [...formData.waterQualityNauplia];
+                updatedWaterQuality[index].value = e.target.value;
+                setFormData((prevData) => ({ ...prevData, waterQualityNauplia: updatedWaterQuality }));
+              }} className="w-2/3 md:w-1/3 p-2 border border-gray-300 bg-slate-100 rounded-md" />
             </div>
           ))}
         </div>
         <div className="w-full md:w-2/3 flex justify-end mt-4">
-          <button onClick={() => handleAddWaterQuality("waterQualityNauplia")} className="py-2 px-4 text-sky-900 items-center rounded-lg border-2 border-sky-900">
+          <button onClick={() => handleOpenModal('waterQualityNauplia')} className="py-2 px-4 text-sky-900 items-center rounded-lg border-2 border-sky-900">
             Add More <i className="fa-solid fa-plus"></i>
           </button>
         </div>
@@ -172,6 +211,17 @@ function BroodstockManagementForm({ initialData = {}, onSubmit, onCancel }) {
           Save
         </button>
       </div>
+
+      {/* Modal */}
+      <WaterQualityModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSave={handleSaveWaterQuality}
+        parameter={newParameter}
+        setParameter={setNewParameter}
+        value={newValue}
+        setValue={setNewValue}
+      />
     </>
   )
 }
