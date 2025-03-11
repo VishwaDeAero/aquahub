@@ -9,11 +9,20 @@ const StockIn = () => {
                     <label className="block font-medium text-gray-700">Item Type</label>
                 </div>
                 <div className="col-span-8">
-                    <select className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option>Select Type</option>
-                        <option>Type 1</option>
-                        <option>Type 2</option>
-                    </select>
+                    <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 items-center">
+                        <div className="col-span-2">
+                            <select className="mt-1 block w-full border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <option>Select Type</option>
+                                <option>Type 1</option>
+                                <option>Type 2</option>
+                            </select>
+                        </div>
+                        <div className="col-span-2 flex justify-center sm:justify-start">
+                            <button className="text-sm w-2/3 sm:w-1/3 bg-darkblue text-white h-8 rounded-full hover:bg-blue-900">
+                                <i className="fa-solid fa-plus me-2"></i>Add More
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Item Status */}
