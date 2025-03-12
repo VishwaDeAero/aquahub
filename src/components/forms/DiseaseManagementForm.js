@@ -9,7 +9,15 @@ function DiseaseManagementForm({ initialData = {}, onSubmit, onCancel }) {
         section: "",
         tankNumber: "",
         disease: "",
-        diseases: ["Disease 1", "Disease 2", "Disease 3"], // Allows dynamic addition of diseases
+        diseases: [
+            "White Spot Syndrome Virus (WSSV)",
+            "Infectious Hypodermal & Hematopoietic Necrosis Virus (IHHNV)",
+            "Infectious Myonecrosis Virus (IMNV)",
+            "Taura Syndrome Virus (TSV)",
+            "Yellow Head Virus (YHV)",
+            "Necrotizing Hepatopancreatitis Bacterium (NHPB)",
+            "Acute Hepatopancreatic Necrosis Disease/Early Mortality Syndrome Virus"
+        ], // Allows dynamic addition of diseases
         bacterial: false,
         viral: false,
         parasitic: false,

@@ -47,10 +47,10 @@ const Dashboard = () => {
                             <div className="grid grid-cols-3 gap-2 flex-grow">
                                 <div><GaugeChart label="PH" value="7.5" maxValue="10" color="#006494" /></div>
                                 <div><GaugeChart label="Salinity" value="35" maxValue="100" color="#1B98E0" /></div>
-                                <div><GaugeChart label="Alkalinity" value="120" maxValue="200" color="#13293D" /></div>
-                                <div><GaugeChart label="Chlorine" value="7.5" maxValue="10" color="#247BA0" /></div>
-                                <div><GaugeChart label="Ammonia" value="35" maxValue="100" color="#006494" /></div>
-                                <div><GaugeChart label="DO" value="120" maxValue="200" color="#1B98E0" /></div>
+                                <div><GaugeChart label="Alkalinity" value="150" maxValue="200" color="#13293D" /></div>
+                                <div><GaugeChart label="Chlorine" value="10" maxValue="10" color="#247BA0" /></div>
+                                <div><GaugeChart label="Ammonia" value="1" maxValue="100" color="#006494" /></div>
+                                <div><GaugeChart label="DO" value="5" maxValue="200" color="#1B98E0" /></div>
                             </div>
                         </Card>
                     </div>

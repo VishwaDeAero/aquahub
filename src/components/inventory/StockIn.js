@@ -74,8 +74,12 @@ const StockIn = () => {
             className="mt-1 block w-full md:w-1/2 border p-2.5 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
             <option value="">Select Type</option>
-            <option value="Type 1">Type 1</option>
-            <option value="Type 2">Type 2</option>
+            <option value="Probiotics">Probiotics</option>
+            <option value="Prebiotics">Prebiotics</option>
+            <option value="Live feed">Live feed</option>
+            <option value="Mineral">Mineral</option>
+            <option value="Supplement">Supplement</option>
+            <option value="Granular hatchery feed">Granular hatchery feed</option>
           </select>
         </div>
 
