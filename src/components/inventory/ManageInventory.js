@@ -5,10 +5,10 @@ import DeleteConfirmationModal from "./DeleteConfirmationModal";
 const ManageInventory = () => {
   // State for inventory data
   const [inventory, setInventory] = useState([]);
-  
+
   // State for filtered inventory
   const [filteredInventory, setFilteredInventory] = useState([]);
-  
+
   // State for delete confirmation modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
@@ -22,11 +22,14 @@ const ManageInventory = () => {
     const fetchInventory = async () => {
       try {
         const token = localStorage.getItem("authToken");
-        const response = await axios.get("http://localhost:5001/api/inventory/inventory", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:5001/api/inventory/inventory",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setInventory(response.data);
         setFilteredInventory(response.data); // Initialize filtered inventory
       } catch (error) {
@@ -43,14 +46,15 @@ const ManageInventory = () => {
     let filtered = inventory;
 
     if (selectedType) {
-      filtered = filtered.filter(item => item.itemType === selectedType);
+      filtered = filtered.filter((item) => item.itemType === selectedType);
     }
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(item =>
-        item.itemCode.toLowerCase().includes(query) ||
-        item.brand.toLowerCase().includes(query)
+      filtered = filtered.filter(
+        (item) =>
+          item.itemCode.toLowerCase().includes(query) ||
+          item.brand.toLowerCase().includes(query)
       );
     }
 
@@ -61,16 +65,21 @@ const ManageInventory = () => {
   const confirmDelete = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      await axios.delete(`http://localhost:5001/api/inventory/inventory/${selectedItemId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      
+      await axios.delete(
+        `http://localhost:5001/api/inventory/inventory/${selectedItemId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
       // Update state after successful deletion
-      setInventory(inventory.filter(item => item._id !== selectedItemId));
-      setFilteredInventory(filteredInventory.filter(item => item._id !== selectedItemId));
-      
+      setInventory(inventory.filter((item) => item._id !== selectedItemId));
+      setFilteredInventory(
+        filteredInventory.filter((item) => item._id !== selectedItemId)
+      );
+
       setIsModalOpen(false);
       setSelectedItemId(null);
     } catch (error) {
@@ -81,8 +90,13 @@ const ManageInventory = () => {
 
   // Table headers
   const tableHeaders = [
-    "Date", "Brand", "Item Code", "Available Quantity", 
-    "Re-Order Quantity", "Delete", "Update"
+    "Date",
+    "Brand",
+    "Item Code",
+    "Available Quantity",
+    "Re-Order Quantity",
+    "Delete",
+    "Update",
   ];
 
   return (
@@ -97,10 +111,15 @@ const ManageInventory = () => {
             onChange={(e) => setSelectedType(e.target.value)}
             className="px-3 py-2 border rounded-lg bg-gray-100"
           >
-            <option value="">All Types</option>
-            <option value="Type 1">Type 1</option>
-            <option value="Type 2">Type 2</option>
-            <option value="Type 3">Type 3</option>
+            <option value="">All Type</option>
+            <option value="Probiotics">Probiotics</option>
+            <option value="Prebiotics">Prebiotics</option>
+            <option value="Live feed">Live feed</option>
+            <option value="Mineral">Mineral</option>
+            <option value="Supplement">Supplement</option>
+            <option value="Granular hatchery feed">
+              Granular hatchery feed
+            </option>
           </select>
         </div>
 

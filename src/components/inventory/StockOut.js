@@ -16,11 +16,14 @@ const StockOut = () => {
     const fetchInventory = async () => {
       try {
         const token = localStorage.getItem("authToken");
-        const response = await axios.get("http://localhost:5001/api/inventory/inventory", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:5001/api/inventory/inventory",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setInventory(response.data);
       } catch (error) {
         console.error("Error fetching inventory:", error);
@@ -63,11 +66,15 @@ const StockOut = () => {
       }));
 
       // Send stock-out data to the backend
-      await axios.post("http://localhost:5001/api/inventory/stock-out", stockOutData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        "http://localhost:5001/api/inventory/stock-out",
+        stockOutData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       alert("Stock out successful!");
       setSelectedItems([]); // Clear selected items after successful stock-out
@@ -90,16 +97,21 @@ const StockOut = () => {
           onChange={(e) => setSelectedType(e.target.value)}
           className="px-4 py-2 w-48 border rounded-lg shadow-sm bg-gray-100 text-gray-700 border-sky-900 focus:ring-sky-900"
         >
-          <option value="">Select Type</option>
-          <option value="Type 1">Type 1</option>
-          <option value="Type 2">Type 2</option>
-          <option value="Type 3">Type 3</option>
+          <option value="">All Type</option>
+          <option value="Probiotics">Probiotics</option>
+          <option value="Prebiotics">Prebiotics</option>
+          <option value="Live feed">Live feed</option>
+          <option value="Mineral">Mineral</option>
+          <option value="Supplement">Supplement</option>
+          <option value="Granular hatchery feed">Granular hatchery feed</option>
         </select>
 
         {/* Search Button (Disabled when no type is selected) */}
         <button
           className={`px-4 py-2 w-32 rounded-lg ${
-            selectedType ? "bg-sky-900 text-white hover:bg-blue-900" : "bg-gray-200 text-gray-500 cursor-not-allowed"
+            selectedType
+              ? "bg-sky-900 text-white hover:bg-blue-900"
+              : "bg-gray-200 text-gray-500 cursor-not-allowed"
           }`}
           disabled={!selectedType}
         >
@@ -128,7 +140,9 @@ const StockOut = () => {
                 <td className="px-4 py-2">
                   <input type="checkbox" />
                 </td>
-                <td className="px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
+                <td className="px-4 py-2">
+                  {new Date(item.date).toLocaleDateString()}
+                </td>
                 <td className="px-4 py-2">{item.brand}</td>
                 <td className="px-4 py-2">{item.itemCode}</td>
                 <td className="px-4 py-2 text-center">{item.availableQty}</td>
@@ -180,7 +194,9 @@ const StockOut = () => {
             ) : (
               selectedItems.map((item) => (
                 <tr key={item._id} className="border-b">
-                  <td className="px-4 py-2">{new Date(item.date).toLocaleDateString()}</td>
+                  <td className="px-4 py-2">
+                    {new Date(item.date).toLocaleDateString()}
+                  </td>
                   <td className="px-4 py-2">{item.itemType}</td>
                   <td className="px-4 py-2">{item.brand}</td>
                   <td className="px-4 py-2">{item.itemCode}</td>
@@ -191,7 +207,9 @@ const StockOut = () => {
                       min="1"
                       max={item.availableQty}
                       value={item.quantity}
-                      onChange={(e) => handleQuantityChange(item._id, e.target.value)}
+                      onChange={(e) =>
+                        handleQuantityChange(item._id, e.target.value)
+                      }
                       className="w-16 p-1 border rounded-md"
                     />
                   </td>
